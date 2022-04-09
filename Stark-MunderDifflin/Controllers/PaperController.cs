@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Stark_MunderDifflin.Controllers
 {
-    public class PaperControlller : Controller
+    public class PaperController : Controller
     {
         // GET: PaperControlller
         public ActionResult Index()
