@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Stark_MunderDifflin.Models;
+using Stark_MunderDifflin.Repos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -6,13 +8,22 @@ namespace Stark_MunderDifflin.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaperController : ControllerBase
+    public class PaperController : Controller
     {
+        private readonly IPaperRepo _paperRepo;
+
+        public PaperController(IPaperRepo paperRepo)
+        {
+            _paperRepo = paperRepo;
+        }
+
         // GET: api/<PaperController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Paper> papers = _paperRepo.getAll();
+            if (papers == null) return NotFound();
+            return Ok(papers);
         }
 
         // GET api/<PaperController>/5
