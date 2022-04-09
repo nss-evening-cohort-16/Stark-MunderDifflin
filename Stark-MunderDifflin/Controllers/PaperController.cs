@@ -5,25 +5,25 @@ namespace Stark_MunderDifflin.Controllers
 {
     public class PaperController : Controller
     {
-        // GET: PaperControlller
+        // GET: PaperController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: PaperControlller/Details/5
+        // GET: PaperController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: PaperControlller/Create
+        // GET: PaperController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PaperControlller/Create
+        // POST: PaperController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -38,13 +38,13 @@ namespace Stark_MunderDifflin.Controllers
             }
         }
 
-        // GET: PaperControlller/Edit/5
+        // GET: PaperController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: PaperControlller/Edit/5
+        // POST: PaperController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -59,13 +59,13 @@ namespace Stark_MunderDifflin.Controllers
             }
         }
 
-        // GET: PaperControlller/Delete/5
+        // GET: PaperController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: PaperControlller/Delete/5
+        // POST: PaperController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
