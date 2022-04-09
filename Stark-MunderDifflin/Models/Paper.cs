@@ -2,5 +2,10 @@
 {
     public class Paper
     {
+        public string Name { get; set; }
+        public string Color { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int Weight {get; set; }
     }
 }
