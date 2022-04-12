@@ -28,9 +28,11 @@ namespace Stark_MunderDifflin.Controllers
 
         // GET api/<PaperController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var paper = _paperRepo.getById(id);
+            if (paper == null) return NotFound();
+            return Ok(paper);
         }
 
         // POST api/<PaperController>
