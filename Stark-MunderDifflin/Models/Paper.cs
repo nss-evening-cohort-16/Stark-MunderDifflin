@@ -7,5 +7,6 @@
         public int Width { get; set; }
         public int Length { get; set; }
         public int Weight {get; set; }
+        public decimal Price { get; set; }
     }
 }
