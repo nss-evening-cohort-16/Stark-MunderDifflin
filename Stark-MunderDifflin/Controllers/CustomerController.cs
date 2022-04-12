@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Stark_MunderDifflin.Models;
+using Stark_MunderDifflin.Repos;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +11,13 @@ namespace Stark_MunderDifflin.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private readonly ICustomerRepository _customerRepo;
+
+        public CustomerController(ICustomerRepository customerRepository)
+        {
+            _customerRepo = customerRepository;
+        }
+
         // GET: api/<CustomerController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -16,10 +26,16 @@ namespace Stark_MunderDifflin.Controllers
         }
 
         // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{uid}")]
+        public IActionResult GetCustomerByUID(string uid)
         {
-            return "value";
+            Customer customer = _customerRepo.getCustomerByUID(uid);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            return Ok(customer);
         }
 
         // POST api/<CustomerController>
