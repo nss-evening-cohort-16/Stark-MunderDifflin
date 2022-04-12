@@ -63,3 +63,5 @@ INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Dwight', 'dwight@gmail.com'
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Big Tuna', 'bigtuna@gmail.com', 2345);
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Pat Thetic', 'sad@gmail.com', 2875);
 
+SELECT * FROM Customer
+WHERE UID = 1234 
