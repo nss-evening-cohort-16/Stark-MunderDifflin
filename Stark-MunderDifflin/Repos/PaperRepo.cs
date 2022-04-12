@@ -27,7 +27,7 @@ namespace Stark_MunderDifflin.Repos
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT [Name], Color, [Length], Width, [Weight], Price
+                        SELECT Id, [Name], Color, [Length], Width, [Weight], Price
                         FROM Paper";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -37,6 +37,7 @@ namespace Stark_MunderDifflin.Repos
                         {
                             Paper paper = new Paper()
                             {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 Name = reader.GetString(reader.GetOrdinal("Name")),
                                 Color = reader.GetString(reader.GetOrdinal("Color")),
                                 Length = reader.GetInt32(reader.GetOrdinal("Length")),
@@ -52,9 +53,40 @@ namespace Stark_MunderDifflin.Repos
             }
         }
 
-        public Paper getById(int id)
+        public Paper? getById(int id)
         {
-           return new Paper();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id, [Name], Color, [Length], Width, [Weight], Price
+                        FROM Paper
+                        WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Paper paper = new Paper()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Color = reader.GetString(reader.GetOrdinal("Color")),
+                                Length = reader.GetInt32(reader.GetOrdinal("Length")),
+                                Width = reader.GetInt32(reader.GetOrdinal("Width")),
+                                Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
+                                Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                            };
+                            return paper;
+                        }
+                        else return null;
+                    }
+                }
+            }
         }
     }
 }
