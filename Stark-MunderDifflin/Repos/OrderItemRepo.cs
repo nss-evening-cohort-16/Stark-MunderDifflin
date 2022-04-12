@@ -82,7 +82,23 @@ namespace Stark_MunderDifflin.Repos
                     item.Id = id;
                 }
             }
-        }
 
-    }
-}
+            public void DeleteOrderItem(int orderId, int paperId)
+            {
+                using (SqlConnection conn = Connection)
+                {
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"
+                            DELETE
+                            FROM OrderItem
+                            WHERE OrderId = @oId AND  PaperId = @pId";
+
+                        cmd.Parameters.AddWithValue("@oId", orderId);
+                        cmd.Parameters.AddWithValue("@pId", paperId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
