@@ -52,7 +52,6 @@ namespace Stark_MunderDifflin.Repos
                 }
             }
         }
-
         public Paper? getById(int id)
         {
             using (SqlConnection conn = Connection)
