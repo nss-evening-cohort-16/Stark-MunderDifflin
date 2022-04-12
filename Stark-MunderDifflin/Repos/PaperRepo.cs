@@ -27,7 +27,7 @@ namespace Stark_MunderDifflin.Repos
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT [Name], Color, [Length], Width, [Weight]
+                        SELECT [Name], Color, [Length], Width, [Weight], Price
                         FROM Paper";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -42,6 +42,7 @@ namespace Stark_MunderDifflin.Repos
                                 Length = reader.GetInt32(reader.GetOrdinal("Length")),
                                 Width = reader.GetInt32(reader.GetOrdinal("Width")),
                                 Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
+                                Price = reader.GetDecimal(reader.GetOrdinal("Price")),
                             };
                             papers.Add(paper);
                         }
