@@ -39,7 +39,7 @@ namespace Stark_MunderDifflin.Controllers
         }
 
         // GET api/<CustomerController>/5
-        [HttpGet("{uid}")]
+        [HttpGet("UID/{uid}")]
         public IActionResult GetCustomerByUID(string uid)
         {
             Customer customer = _customerRepo.getCustomerByUID(uid);
