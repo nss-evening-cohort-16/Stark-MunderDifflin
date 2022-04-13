@@ -13,17 +13,23 @@ namespace Stark_MunderDifflin.Controllers
     {
         private readonly IOrderItemRepo _orderItemRepo;
 
-        public OrderController(IOrderItemRepo orderItemRepo)
+        private readonly IOrderRepo _orderRepo;
+
+        public OrderController(IOrderRepo orderRepo, IOrderItemRepo orderItemRepo)
         {
+            _orderRepo = orderRepo;
             _orderItemRepo = orderItemRepo;
         }
 
-        // GET: api/<OrderController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Order> orders = _orderRepo.getAllOrders();
+            if (orders == null) return NotFound();
+            return Ok(orders);
         }
+       
+
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
