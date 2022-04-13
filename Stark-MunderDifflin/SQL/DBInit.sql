@@ -62,4 +62,3 @@ INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Pam', 'pam@gmail.com', 1234
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Dwight', 'dwight@gmail.com', 3456);
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Big Tuna', 'bigtuna@gmail.com', 2345);
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Pat Thetic', 'sad@gmail.com', 2875);
-
