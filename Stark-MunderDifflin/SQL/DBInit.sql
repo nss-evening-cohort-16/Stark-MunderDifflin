@@ -62,3 +62,9 @@ INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Pam', 'pam@gmail.com', 1234
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Dwight', 'dwight@gmail.com', 3456);
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Big Tuna', 'bigtuna@gmail.com', 2345);
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Pat Thetic', 'sad@gmail.com', 2875);
+
+INSERT INTO [Order] (CustomerId, IsOpen) VALUES (1234, 0);
+INSERT INTO [Order] (CustomerId, IsOpen) VALUES (1234, 0);
+INSERT INTO [Order] (CustomerId, IsOpen) VALUES (2345, 0);
+INSERT INTO [Order] (CustomerId, IsOpen) VALUES (3456, 0);
+
