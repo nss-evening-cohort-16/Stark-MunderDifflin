@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Stark_MunderDifflin.Models;
+using Stark_MunderDifflin.Repos;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +11,13 @@ namespace Stark_MunderDifflin.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private readonly ICustomerRepository _customerRepo;
+
+        public CustomerController(ICustomerRepository customerRepository)
+        {
+            _customerRepo = customerRepository;
+        }
+
         // GET: api/<CustomerController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -15,29 +25,48 @@ namespace Stark_MunderDifflin.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        // GET api/<CustomerController>/Email/5
+        [HttpGet("Email/{email}")]
+        public IActionResult GetCustomerByEmail(string email)
+        {
+            Customer customer = _customerRepo.getCustomerByEmail(email);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            return Ok(customer);
+        }
+
         // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("UID/{uid}")]
+        public IActionResult GetCustomerByUID(string uid)
         {
-            return "value";
+            Customer customer = _customerRepo.getCustomerByUID(uid);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            return Ok(customer);
         }
 
-        // POST api/<CustomerController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //// POST api/<CustomerController>
+        //[HttpPost]
+        //public void Post([FromBody] string value)
+        //{
+        //}
 
-        // PUT api/<CustomerController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<CustomerController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<CustomerController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
