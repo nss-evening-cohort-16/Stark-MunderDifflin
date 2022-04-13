@@ -72,7 +72,7 @@ namespace Stark_MunderDifflin.Repos
                         OUTPUT INSERTED.ID
                         VALUES (@paperId, @orderId);
                     ";
-             
+
                     cmd.Parameters.AddWithValue("@ownerId", item.PaperId);
                     cmd.Parameters.AddWithValue("@ownerId", item.OrderId);
 
@@ -82,6 +82,7 @@ namespace Stark_MunderDifflin.Repos
                     item.Id = id;
                 }
             }
+        }
 
             public void DeleteOrderItem(int orderId, int paperId)
             {
@@ -101,4 +102,6 @@ namespace Stark_MunderDifflin.Repos
                     }
                 }
             }
-        }
+      
+    }
+}
