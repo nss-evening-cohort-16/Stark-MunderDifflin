@@ -6,6 +6,6 @@ namespace Stark_MunderDifflin.Repos
     {
         OrderItem GetById(int id);
         void AddOrderItem(OrderItem item);
-        public void DeleteOrderItem(int orderId, int paperId);
+        public void DeleteOrderItem(int orderItemId);
     }
 }
