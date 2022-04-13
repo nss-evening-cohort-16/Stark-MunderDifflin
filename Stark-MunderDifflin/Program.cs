@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddTransient<IOrderRepo, OrderRepo>();
 builder.Services.AddTransient<IPaperRepo, PaperRepo>();
 builder.Services.AddTransient<ICustomerRepository, CustomerRepo>();
 builder.Services.AddTransient<IOrderItemRepo, OrderItemRepo>();
