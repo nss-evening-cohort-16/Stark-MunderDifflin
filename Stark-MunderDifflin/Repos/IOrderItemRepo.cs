@@ -4,8 +4,8 @@ namespace Stark_MunderDifflin.Repos
 {
     public interface IOrderItemRepo
     {
-        OrderItem GetById(int id);
+        List<Paper>? GetAllItemsByOrderId(int id);
         void AddOrderItem(OrderItem item);
-        public void DeleteOrderItem(int orderItemId);
+        public void DeleteOrderItem(int orderId, int paperId);
     }
 }

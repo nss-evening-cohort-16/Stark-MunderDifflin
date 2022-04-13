@@ -19,7 +19,9 @@ namespace Stark_MunderDifflin.Repos
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
-        public OrderItem GetById(int id)
+
+        // Get
+        public List<Paper>? GetAllItemsByOrderId(int orderId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -28,34 +30,37 @@ namespace Stark_MunderDifflin.Repos
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, OrderId, PaperId 
-                        FROM OrderItem
-                        WHERE Id = @id
+                        SELECT p.Id,p.Name, p.Color, p.Width, p.Length, p.Weight, p.Price
+o.OrderId
+                        FROM OrderItem as o
+                        LEFT JOIN Paper as p
+                        on p.Id = o.PaperId
+                        WHERE o.OrderId = @id
                     ";
 
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    if (reader.Read())
+                    List<Paper> list = new List<Paper>();
+
+                    while (reader.Read())
                     {
-                        OrderItem item = new OrderItem
+                        Paper item = new Paper
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            OrderId = reader.GetInt32(reader.GetOrdinal("OrderId")),
-                            PaperId = reader.GetInt32(reader.GetOrdinal("PaperId")),
+                            Name = reader.GetString(reader.GetOrdinal("Name")),
+                            Color = reader.GetString(reader.GetOrdinal("Color")),
+                            Width = reader.GetInt32(reader.GetOrdinal("Width")),
+                            Length = reader.GetInt32(reader.GetOrdinal("Length")),
+                            Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
+                            Price = reader.GetDecimal(reader.GetOrdinal("Price"))                          
                         };
 
-                        reader.Close();
-
-                        return item;
+                        list.Add(item);
                     }
-                    else
-                    {
-                        reader.Close();
-
-                        return null;
-                    }
+                    reader.Close();
+                        return list;
                 }
             }
         }
@@ -84,24 +89,24 @@ namespace Stark_MunderDifflin.Repos
             }
         }
 
-        public void DeleteOrderItem(int orderItemId)
-        {
-            using (SqlConnection conn = Connection)
+            public void DeleteOrderItem(int orderId, int paperId)
             {
-                conn.Open();
-
-                using (SqlCommand cmd = conn.CreateCommand())
+                using (SqlConnection conn = Connection)
                 {
-                    cmd.CommandText = @"
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"
                             DELETE
                             FROM OrderItem
-                            WHERE Id = @id";
+                            WHERE OrderId = @oId AND  PaperId = @pId";
 
-                    cmd.Parameters.AddWithValue("@id", orderItemId);
+                        cmd.Parameters.AddWithValue("@oId", orderId);
+                        cmd.Parameters.AddWithValue("@pId", paperId);
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
-        }
+      
     }
 }
