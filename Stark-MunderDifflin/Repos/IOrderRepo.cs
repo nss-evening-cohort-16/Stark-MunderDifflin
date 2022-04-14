@@ -7,5 +7,6 @@ namespace Stark_MunderDifflin.Repos
     {
         List<Order> getAllOrders();
         void DeleteOrder(int orderId);
+        List<Order> getAllOrdersByUID(string uid);
     }
 }
