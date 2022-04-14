@@ -41,6 +41,14 @@ namespace Stark_MunderDifflin.Controllers
 
         }
 
+        [HttpGet("Customer/{uid}")]
+        public IActionResult GetOrderByUID(string uid)
+        {
+            List<Order>? customerOrders = _orderRepo.getAllOrdersByUID(uid);
+            if (customerOrders == null) return NotFound();
+            return Ok(customerOrders);
+        }
+
             // POST api/<OrderController>
             [HttpPost]
         public IActionResult Post(OrderItem newOrderItem)
