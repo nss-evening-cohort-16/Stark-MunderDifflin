@@ -3,7 +3,8 @@
     public class Order
     {
         public int Id { get; set; }
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         public bool IsOpen { get; set; }
+        public string UID { get; set; }
     }
 }
