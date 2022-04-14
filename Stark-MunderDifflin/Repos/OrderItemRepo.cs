@@ -21,7 +21,7 @@ namespace Stark_MunderDifflin.Repos
         }
 
         // Get
-        public List<Paper>? GetAllItemsByOrderId(int orderId)
+        public List<PaperOrderItem>? GetAllItemsByOrderId(int orderId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -30,37 +30,35 @@ namespace Stark_MunderDifflin.Repos
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT p.Id,p.Name, p.Color, p.Width, p.Length, p.Weight, p.Price
-o.OrderId
+                        SELECT p.Id,p.Name, p.Color, p.Width, p.Length, p.Weight, p.Price, o.OrderId, o.Quantity
                         FROM OrderItem as o
                         LEFT JOIN Paper as p
                         on p.Id = o.PaperId
-                        WHERE o.OrderId = @id
-                    ";
+                        WHERE o.OrderId = @orderId";
 
                     cmd.Parameters.AddWithValue("@orderId", orderId);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    List<Paper> list = new List<Paper>();
-
-                    while (reader.Read())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        Paper item = new Paper
+                        List<PaperOrderItem> list = new List<PaperOrderItem>();
+                        while (reader.Read())
                         {
-                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            Name = reader.GetString(reader.GetOrdinal("Name")),
-                            Color = reader.GetString(reader.GetOrdinal("Color")),
-                            Width = reader.GetInt32(reader.GetOrdinal("Width")),
-                            Length = reader.GetInt32(reader.GetOrdinal("Length")),
-                            Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
-                            Price = reader.GetDecimal(reader.GetOrdinal("Price"))                          
-                        };
+                            PaperOrderItem item = new PaperOrderItem
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Color = reader.GetString(reader.GetOrdinal("Color")),
+                                Width = reader.GetInt32(reader.GetOrdinal("Width")),
+                                Length = reader.GetInt32(reader.GetOrdinal("Length")),
+                                Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
+                                Price = reader.GetDecimal(reader.GetOrdinal("Price")),                         
+                                Quantity = reader.GetInt32(reader.GetOrdinal("Quantity")),                         
+                            };
 
                         list.Add(item);
-                    }
-                    reader.Close();
+                        }
                         return list;
+                    }
                 }
             }
         }
@@ -78,8 +76,8 @@ o.OrderId
                         VALUES (@paperId, @orderId);
                     ";
 
-                    cmd.Parameters.AddWithValue("@ownerId", item.PaperId);
-                    cmd.Parameters.AddWithValue("@ownerId", item.OrderId);
+                    cmd.Parameters.AddWithValue("@paperId", item.PaperId);
+                    cmd.Parameters.AddWithValue("@orderId", item.OrderId);
 
 
                     int id = (int)cmd.ExecuteScalar();
@@ -89,24 +87,46 @@ o.OrderId
             }
         }
 
-            public void DeleteOrderItem(int orderId, int paperId)
+        public void DeleteOrderItem(int orderId, int paperId)
+        {
+            using (SqlConnection conn = Connection)
             {
-                using (SqlConnection conn = Connection)
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    using (SqlCommand cmd = conn.CreateCommand())
-                    {
-                        cmd.CommandText = @"
-                            DELETE
-                            FROM OrderItem
-                            WHERE OrderId = @oId AND  PaperId = @pId";
+                    cmd.CommandText = @"
+                        DELETE
+                        FROM OrderItem
+                        WHERE OrderId = @oId AND  PaperId = @pId";
 
-                        cmd.Parameters.AddWithValue("@oId", orderId);
-                        cmd.Parameters.AddWithValue("@pId", paperId);
+                    cmd.Parameters.AddWithValue("@oId", orderId);
+                    cmd.Parameters.AddWithValue("@pId", paperId);
 
-                        cmd.ExecuteNonQuery();
-                    }
+                    cmd.ExecuteNonQuery();
                 }
             }
-      
+        }
+
+        public void UpdateOrderItemQuantity(int id, int quantity)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE OrderItem
+                        SET Quantity = @quantity
+                        WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@quantity", quantity);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
