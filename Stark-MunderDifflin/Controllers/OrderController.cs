@@ -65,9 +65,10 @@ namespace Stark_MunderDifflin.Controllers
         }
 
         // DELETE api/<OrderController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{orderId}")]
+        public void Delete(int orderId)
         {
+            _orderRepo.DeleteOrder(orderId);
         }
         
         // DELETE api/<OrderController>/5/1
