@@ -40,7 +40,7 @@ namespace Stark_MunderDifflin.Repos
                             Order order = new Order()
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                                CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerId")),
+                                CustomerId = reader.GetString(reader.GetOrdinal("CustomerId")),
                                 IsOpen = reader.GetBoolean(reader.GetOrdinal("IsOpen")),
                             };
                             orders.Add(order);
