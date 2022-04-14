@@ -32,10 +32,10 @@ namespace Stark_MunderDifflin.Controllers
 
 
         // GET api/<OrderController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{orderId}")]
         public IActionResult Get(int orderId)
         {
-            List<Paper>? items = _orderItemRepo.GetAllItemsByOrderId(orderId);
+            List<PaperOrderItem>? items = _orderItemRepo.GetAllItemsByOrderId(orderId);
             if (items == null) return NotFound();
             return Ok(items);
 
@@ -67,15 +67,25 @@ namespace Stark_MunderDifflin.Controllers
 
 
         // PUT api/<OrderController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("OrderItems/{id}")]
+        public IActionResult Put(int id, [FromBody] PaperOrderItem item)
         {
+            try
+            {
+                _orderItemRepo.UpdateOrderItemQuantity(id, item.Quantity);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/<OrderController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{orderId}")]
+        public void Delete(int orderId)
         {
+            _orderRepo.DeleteOrder(orderId);
         }
         
         // DELETE api/<OrderController>/5/1

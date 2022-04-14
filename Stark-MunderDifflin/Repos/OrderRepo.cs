@@ -48,6 +48,26 @@ namespace Stark_MunderDifflin.Repos
                         return orders;
                     }
                 }
+
+            }
+        }
+        public void DeleteOrder(int orderId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            DELETE FROM Order
+                            WHERE Id = @id
+                        ";
+
+                    cmd.Parameters.AddWithValue("@id", orderId);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
