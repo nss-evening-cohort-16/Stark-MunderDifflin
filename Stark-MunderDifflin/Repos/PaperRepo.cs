@@ -19,7 +19,7 @@ namespace Stark_MunderDifflin.Repos
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
-        public List<Paper> getAll()
+        public List<Paper> GetAll()
         {
             using (SqlConnection conn = Connection)
             {
@@ -52,7 +52,7 @@ namespace Stark_MunderDifflin.Repos
                 }
             }
         }
-        public Paper? getById(int id)
+        public Paper? GetById(int id)
         {
             using (SqlConnection conn = Connection)
             {
