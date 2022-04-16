@@ -103,5 +103,28 @@ namespace Stark_MunderDifflin.Repos
                 }
             }
         }
+
+        public void AddOrder(Order order)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        INSERT INTO [Order]
+                                        (CustomerId, IsOpen)
+                                        OUTPUT INSERTED.ID
+                                        VALUES (@customerId, @isOpen)
+                                        ";
+                    cmd.Parameters.AddWithValue("@customerId", order.CustomerId);
+                    cmd.Parameters.AddWithValue("@isOpen", order.IsOpen);
+
+                    int id = (int)cmd.ExecuteScalar();
+
+                    order.Id = id;
+                }
+            }
+        }
     }
 }

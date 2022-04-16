@@ -49,9 +49,26 @@ namespace Stark_MunderDifflin.Controllers
             return Ok(customerOrders);
         }
 
-            // POST api/<OrderController>
-            [HttpPost]
-        public IActionResult Post(OrderItem newOrderItem)
+        // POST api/<OrderController>
+        [HttpPost]
+        public IActionResult PostOrder([FromBody] Order newOrder)
+        {
+            if (newOrder == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _orderRepo.AddOrder(newOrder);
+                return Ok(newOrder);
+            }
+
+
+        }
+
+        // POST api/<OrderController>
+        [HttpPost("OrderItems")]
+        public IActionResult PostOrderItem([FromBody] OrderItem newOrderItem)
         {
             if (newOrderItem == null)
             {
