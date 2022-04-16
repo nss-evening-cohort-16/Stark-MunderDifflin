@@ -129,5 +129,40 @@ namespace Stark_MunderDifflin.Repos
                 }
             }
         }
+
+        public OrderItem? OrderItemExists(int paperId, int orderId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd =conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id, PaperId, OrderId, Quantity
+                        FROM OrderItem
+                        WHERE PaperId = @paperId AND OrderId = @orderId";
+
+                    cmd.Parameters.AddWithValue("@paperId", paperId);
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if(reader.Read())
+                        {
+                            OrderItem item = new OrderItem()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                OrderId = reader.GetInt32(reader.GetOrdinal("OrderId")),
+                                PaperId = reader.GetInt32(reader.GetOrdinal("PaperId")),
+                                Quantity = reader.GetInt32(reader.GetOrdinal("Quantity"))
+                            };
+                            return item;
+                        }
+                        else return null;
+                    }
+                }
+            }
+        }
     }
 }
