@@ -19,7 +19,7 @@ namespace Stark_MunderDifflin.Repos
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
-        public Customer getCustomerByEmail(string email)
+        public Customer GetCustomerByEmail(string email)
         {
             using (SqlConnection conn = Connection)
             {
@@ -54,7 +54,7 @@ namespace Stark_MunderDifflin.Repos
             }
         }
 
-        public Customer getCustomerByUID(string uid)
+        public Customer GetCustomerByUID(string uid)
         {
             using (SqlConnection conn = Connection)
             {

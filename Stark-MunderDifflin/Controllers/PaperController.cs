@@ -21,7 +21,7 @@ namespace Stark_MunderDifflin.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            List<Paper> papers = _paperRepo.getAll();
+            List<Paper> papers = _paperRepo.GetAll();
             if (papers == null) return NotFound();
             return Ok(papers);
         }
@@ -30,7 +30,7 @@ namespace Stark_MunderDifflin.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var paper = _paperRepo.getById(id);
+            var paper = _paperRepo.GetById(id);
             if (paper == null) return NotFound();
             return Ok(paper);
         }

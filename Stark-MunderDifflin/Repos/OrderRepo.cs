@@ -19,7 +19,7 @@ namespace Stark_MunderDifflin.Repos
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
-        public List<Order> getAllOrders()
+        public List<Order> GetAllOrders()
         {
             using (SqlConnection conn = Connection)
             {
@@ -71,7 +71,7 @@ namespace Stark_MunderDifflin.Repos
             }
         }
 
-        public List<Order> getAllOrdersByUID(string uid)
+        public List<Order> GetAllOrdersByUID(string uid)
         {
             using (SqlConnection conn = Connection)
             {
@@ -118,11 +118,31 @@ namespace Stark_MunderDifflin.Repos
                                         VALUES (@customerId, @isOpen)
                                         ";
                     cmd.Parameters.AddWithValue("@customerId", order.CustomerId);
-                    cmd.Parameters.AddWithValue("@isOpen", order.IsOpen);
+                    cmd.Parameters.AddWithValue("@isOpen", true);
 
                     int id = (int)cmd.ExecuteScalar();
 
                     order.Id = id;
+                }
+            }
+        }
+
+        public void CloseOrder(int orderId)
+        {
+            using(SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using(SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE [Order]
+                        SET isOpen = 0
+                        WHERE Id = @orderId";
+
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
