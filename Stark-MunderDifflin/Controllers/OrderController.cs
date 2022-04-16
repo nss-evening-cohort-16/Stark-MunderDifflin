@@ -24,7 +24,7 @@ namespace Stark_MunderDifflin.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            List<Order> orders = _orderRepo.getAllOrders();
+            List<Order> orders = _orderRepo.GetAllOrders();
             if (orders == null) return NotFound();
             return Ok(orders);
         }
@@ -44,7 +44,7 @@ namespace Stark_MunderDifflin.Controllers
         [HttpGet("Customer/{uid}")]
         public IActionResult GetOrderByUID(string uid)
         {
-            List<Order>? customerOrders = _orderRepo.getAllOrdersByUID(uid);
+            List<Order>? customerOrders = _orderRepo.GetAllOrdersByUID(uid);
             if (customerOrders == null) return NotFound();
             return Ok(customerOrders);
         }
@@ -90,6 +90,21 @@ namespace Stark_MunderDifflin.Controllers
             try
             {
                 _orderItemRepo.UpdateOrderItemQuantity(id, item.Quantity);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        // PUT api/<OrderController>/5
+        [HttpPut("Close/{id}")]
+        public IActionResult CloseOrder(int id)
+        {
+            try
+            {
+                _orderRepo.CloseOrder(id);
                 return Ok();
             }
             catch

@@ -29,7 +29,7 @@ namespace Stark_MunderDifflin.Controllers
         [HttpGet("Email/{email}")]
         public IActionResult GetCustomerByEmail(string email)
         {
-            Customer customer = _customerRepo.getCustomerByEmail(email);
+            Customer customer = _customerRepo.GetCustomerByEmail(email);
 
             if (customer == null)
             {
@@ -42,7 +42,7 @@ namespace Stark_MunderDifflin.Controllers
         [HttpGet("UID/{uid}")]
         public IActionResult GetCustomerByUID(string uid)
         {
-            Customer customer = _customerRepo.getCustomerByUID(uid);
+            Customer customer = _customerRepo.GetCustomerByUID(uid);
 
             if (customer == null)
             {
