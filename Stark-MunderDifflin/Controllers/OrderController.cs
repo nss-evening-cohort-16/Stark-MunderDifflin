@@ -73,7 +73,16 @@ namespace Stark_MunderDifflin.Controllers
             if (newOrderItem == null)
             {
                 return NotFound();
-            } else
+            }
+
+            OrderItem? item = _orderItemRepo.OrderItemExists(newOrderItem.PaperId, newOrderItem.OrderId);
+
+            if (item != null)
+            {
+                _orderItemRepo.UpdateOrderItemQuantity(item.Id, (item.Quantity +1));
+                return Ok("Updated Existing Item Quantity +1");
+            } 
+            else
             {
                 _orderItemRepo.AddOrderItem(newOrderItem);
                 return Ok(newOrderItem);    
@@ -85,7 +94,7 @@ namespace Stark_MunderDifflin.Controllers
 
         // PUT api/<OrderController>/5
         [HttpPut("OrderItems/{id}")]
-        public IActionResult Put(int id, [FromBody] PaperOrderItem item)
+        public IActionResult UpdateQuantity(int id, [FromBody] PaperOrderItem item)
         {
             try
             {

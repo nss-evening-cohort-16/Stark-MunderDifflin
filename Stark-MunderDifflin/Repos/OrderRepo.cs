@@ -60,7 +60,7 @@ namespace Stark_MunderDifflin.Repos
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                            DELETE FROM Order
+                            DELETE FROM [Order]
                             WHERE Id = @id
                         ";
 
