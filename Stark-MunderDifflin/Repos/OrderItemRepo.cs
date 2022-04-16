@@ -71,13 +71,14 @@ namespace Stark_MunderDifflin.Repos
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO OrderItem (PaperId, OrderId)
+                        INSERT INTO OrderItem (PaperId, OrderId, Quantity)
                         OUTPUT INSERTED.ID
-                        VALUES (@paperId, @orderId);
+                        VALUES (@paperId, @orderId, @quantity);
                     ";
 
                     cmd.Parameters.AddWithValue("@paperId", item.PaperId);
                     cmd.Parameters.AddWithValue("@orderId", item.OrderId);
+                    cmd.Parameters.AddWithValue("@quantity", item.Quantity);
 
 
                     int id = (int)cmd.ExecuteScalar();
