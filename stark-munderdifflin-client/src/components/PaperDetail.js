@@ -3,10 +3,10 @@ import React from 'react'
 
 const PaperDetails = () => {
   return (
-    <div>HomeComponent</div>
+    <div>Paper Details Component</div>
   )
 }
 
-// HomeComponent.propTypes = {}
+// PaperDetails.propTypes = {}
 
 export default PaperDetails

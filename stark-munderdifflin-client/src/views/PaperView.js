@@ -7,6 +7,6 @@ const PaperView = () => {
   )
 }
 
-// Home.propTypes = {}
+// PaperView.propTypes = {}
 
 export default PaperView
