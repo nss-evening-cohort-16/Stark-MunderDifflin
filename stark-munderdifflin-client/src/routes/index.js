@@ -6,8 +6,8 @@ export default function AppRoutes() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Cart" element={<Cart />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/Cart' element={<Cart />} />
       </Routes>
     </>
   );
