@@ -1,12 +1,12 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 
-const PaperView = () => {
+const Paper = () => {
   return (
     <div>Paper Detail Page</div>
   )
 }
 
-// PaperView.propTypes = {}
+// Paper.propTypes = {}
 
-export default PaperView
+export default Paper
