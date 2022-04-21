@@ -20,9 +20,9 @@ export default function Home() {
       <>
         {papers.map((paper) => (
           <HomeComponent          
-            papers={setPapers}
-            setPaper={setPapers}
+            setPapers={setPapers}
             paper={paper}
+            key={paper.Id}
             
           />
         ))}
