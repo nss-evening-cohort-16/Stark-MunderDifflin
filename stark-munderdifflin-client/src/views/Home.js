@@ -1,9 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { getAllPapers } from '../data/paperData';
+import HomeComponent from '../components/HomeComponent';
 
 export default function Home() {
-  return (
-    <div>Home</div>
-  )
-}
+  const [papers, setPapers] = useState([]);
+  
+  useEffect(() => {
+    let isMounted = true;
+    getAllPapers().then((paperArray) => {
+      if (isMounted) setPapers(paperArray);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
-// Home.propTypes = {}
+  return (
+    <div className="paper-view">
+      <>
+        {papers.map((paper) => (
+          <HomeComponent          
+            papers={setPapers}
+            setPaper={setPapers}
+            paper={paper}
+            
+          />
+        ))}
+      </>
+    </div>
+  );
+}
