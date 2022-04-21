@@ -8,17 +8,17 @@ import {
   CardImg,
 } from 'reactstrap';
 
-export default function HomeComponent() {
+export default function HomeComponent({ paper }) {
   return (
-    <div className ="home-page" onClick={
-<Card className="paper-card" border="light" style={{ width: '20rem' }}>
-        <CardTitle className="paper-name"></CardTitle>
+    <div className ="home-page">
+<Card className="paper-card">
+        <CardTitle className="paper-name">{paper.name}</CardTitle>
         <CardImg 
           alt="paper image"
           className="paper-image"
         />
         <CardBody>
-          <CardSubtitle className="paper-color">         
+          <CardSubtitle className="paper-color">{paper.color}        
           </CardSubtitle>
           <div className="card-btn-container">          
             <Button
@@ -29,8 +29,7 @@ export default function HomeComponent() {
               </Button>        
           </div>
         </CardBody>
-      </Card>
-    } >     
+      </Card>   
     </div>
   )
 }
