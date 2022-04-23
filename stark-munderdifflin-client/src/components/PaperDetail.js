@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import getPaperById from '../data/paperData';
+import { getPaperById } from '../data/paperData';
 
 // import PropTypes from 'prop-types'
 
@@ -9,15 +9,14 @@ export default function PaperDetails() {
   const { dbKey } = useParams();
 
   useEffect(() => {
-    let isMounted = true;
-    getPaperById(dbKey).then((pieceOfPaper) => {
-      if (isMounted) setPaperDetail(pieceOfPaper);
-    });
+    // let isMounted = true;
+    getPaperById(dbKey).then(setPaperDetail);
     return () => {
-      isMounted = false;
+      // isMounted = false;
     };
   }, []);
 
+  
   return (
       <h2>
         {paperDetail.name}

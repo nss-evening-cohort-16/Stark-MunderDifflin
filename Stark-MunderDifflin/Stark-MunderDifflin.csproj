@@ -5,11 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Stark_MunderDifflin</RootNamespace>
-<<<<<<< HEAD
     <UserSecretsId>7c2e62c4-9087-44e3-997b-584f1992ffa6</UserSecretsId>
-=======
-    <UserSecretsId>0af5c410-7c46-44ef-852b-6225b85c65cd</UserSecretsId>
->>>>>>> main
   </PropertyGroup>
 
   <ItemGroup>

@@ -11,10 +11,10 @@ const getAllPapers = async () => {
 
 const getPaperById = async (paperId) => {
     const paperArray = await axios.get(`${dbUrl}/Paper/${paperId}`)
-    .then((response) => response.data);
-    return paperArray;
+    const paperData = paperArray.data    
+    return paperData;
 }
 
 
 
-export {getPaperById,getAllPapers } ;
+export { getPaperById, getAllPapers } ;
