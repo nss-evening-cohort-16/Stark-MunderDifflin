@@ -32,9 +32,24 @@
   border-bottom: 1px solid black;
 }
 
-.cart-submit {
+.cart-qty-input {
+  max-width: 2em;
+  margin-right: 20%;
+}
+
+.cart-btn {
   width: 5em;
   margin-top: 1em;
   margin-right: 5em;
   margin-left: auto;
+}
+
+.cart-table-qty-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.paper-image {
+  max-width: 10em;
 }
