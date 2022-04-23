@@ -26,6 +26,7 @@ CREATE TABLE Paper (
     Width INTEGER NOT NULL,
     [Weight] INTEGER NOT NULL,
     [Price] DECIMAL(9,2) NOT NULL,
+    ImageURL TEXT
 );
 
 CREATE TABLE Customer (
@@ -52,11 +53,11 @@ CREATE TABLE OrderItem (
     CONSTRAINT FK_Order FOREIGN KEY (OrderId) REFERENCES [Order](Id) ON DELETE CASCADE
 );
 
-INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price]) VALUES ('Arches 88 Sild Screen Paper', 'White', 22, 30, 140, 2.99);
-INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price]) VALUES ('Hahnemuhle German Etching Paper', 'Cream', 22, 30, 300, 1.99);
-INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price]) VALUES ('Legion Somerset Printmaking Paper', 'Antique', 30, 44, 280, 3.99);
-INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price]) VALUES ('BFK Rives Printmaking Papers', 'Black', 22, 30, 280, 5.99);
-INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price]) VALUES ('Awagami Bamboo Select Paper', 'Cream', 17, 20, 170, 0.79);
+INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price], ImageURL) VALUES ('Arches 88 Sild Screen Paper', 'White', 22, 30, 140, 2.99, 'https://i.imgur.com/3aucv1x.jpg');
+INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price], ImageURL) VALUES ('Hahnemuhle German Etching Paper', 'Cream', 22, 30, 300, 1.99, 'https://i.imgur.com/e7oPdpi.jpg');
+INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price], ImageURL) VALUES ('Legion Somerset Printmaking Paper', 'Antique', 30, 44, 280, 3.99, 'https://i.imgur.com/jKFsoJs.jpg');
+INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price], ImageURL) VALUES ('BFK Rives Printmaking Papers', 'Black', 22, 30, 280, 5.99, 'https://i.imgur.com/qPZOsv2.jpg');
+INSERT INTO Paper ([Name], Color, [Length], Width, [Weight], [Price], ImageURL) VALUES ('Awagami Bamboo Select Paper', 'Cream', 17, 20, 170, 0.79, 'https://i.imgur.com/1puf1fV.jpg');
 
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Pam', 'pam@gmail.com', 1234);
 INSERT INTO Customer ([Name], Email, [UID]) VALUES ('Dwight', 'dwight@gmail.com', 3456);
