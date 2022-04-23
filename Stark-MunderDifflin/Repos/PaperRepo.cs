@@ -29,7 +29,6 @@ namespace Stark_MunderDifflin.Repos
                     cmd.CommandText = @"
                         SELECT Id, [Name], Color, [Length], Width, [Weight], Price, ImageURL
                         FROM Paper";
-
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         List<Paper> papers = new List<Paper>();
@@ -44,6 +43,7 @@ namespace Stark_MunderDifflin.Repos
                                 Width = reader.GetInt32(reader.GetOrdinal("Width")),
                                 Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+
                                 ImageURL = reader.GetString(reader.GetOrdinal("ImageURL"))
                             };
                             papers.Add(paper);
@@ -64,7 +64,6 @@ namespace Stark_MunderDifflin.Repos
                         SELECT Id, [Name], Color, [Length], Width, [Weight], Price, ImageURL
                         FROM Paper
                         WHERE Id = @id";
-
                     cmd.Parameters.AddWithValue("@id", id);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
