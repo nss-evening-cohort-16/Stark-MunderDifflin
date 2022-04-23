@@ -30,7 +30,7 @@ namespace Stark_MunderDifflin.Repos
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT p.Id,p.Name, p.Color, p.Width, p.Length, p.Weight, p.Price, o.OrderId, o.Quantity, p.ImageURL
+                        SELECT o.Id,p.Name, p.Color, p.Width, p.Length, p.Weight, p.Price, o.OrderId, o.Quantity, p.ImageURL
                         FROM OrderItem as o
                         LEFT JOIN Paper as p
                         on p.Id = o.PaperId
