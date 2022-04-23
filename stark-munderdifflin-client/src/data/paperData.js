@@ -5,7 +5,7 @@ const dbUrl = databaseConfig.databaseURL;
 
 const getAllPapers = async () => {
     const paper = await axios.get(`${dbUrl}/Paper`)
-    const paperData = Object.values(paper.data);
+    const paperData = paper.data;
     return paperData;
   };
 

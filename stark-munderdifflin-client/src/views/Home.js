@@ -19,11 +19,11 @@ export default function Home() {
     <div className="paper-view">
       <>
         {papers.map((paper) => (
-          <HomeComponent          
-            setPapers={setPapers}
+          <HomeComponent 
+          key={paper.id}         
             paper={paper}
-            key={paper.Id}
-            
+           
+          
           />
         ))}
       </>
