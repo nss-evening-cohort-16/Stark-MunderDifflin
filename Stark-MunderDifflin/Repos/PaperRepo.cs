@@ -29,7 +29,7 @@ namespace Stark_MunderDifflin.Repos
                     cmd.CommandText = @"
                         SELECT Id, [Name], Color, [Length], Width, [Weight], Price
                         FROM Paper";
-
+                    //, ImageURL
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         List<Paper> papers = new List<Paper>();
@@ -44,6 +44,7 @@ namespace Stark_MunderDifflin.Repos
                                 Width = reader.GetInt32(reader.GetOrdinal("Width")),
                                 Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                                //ImageURL = reader.GetString(reader.GetOrdinal("ImageUrl"))
                             };
                             papers.Add(paper);
                         }
@@ -63,7 +64,7 @@ namespace Stark_MunderDifflin.Repos
                         SELECT Id, [Name], Color, [Length], Width, [Weight], Price
                         FROM Paper
                         WHERE Id = @id";
-
+                    //, ImageURL
                     cmd.Parameters.AddWithValue("@id", id);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -79,6 +80,7 @@ namespace Stark_MunderDifflin.Repos
                                 Width = reader.GetInt32(reader.GetOrdinal("Width")),
                                 Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                                //ImageURL = reader.GetString(reader.GetOrdinal("ImageUrl"))
                             };
                             return paper;
                         }
