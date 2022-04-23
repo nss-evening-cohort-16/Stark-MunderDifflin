@@ -27,7 +27,7 @@ namespace Stark_MunderDifflin.Repos
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, [Name], Color, [Length], Width, [Weight], Price
+                        SELECT Id, [Name], Color, [Length], Width, [Weight], Price, ImageURL
                         FROM Paper";
                     //, ImageURL
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -44,7 +44,11 @@ namespace Stark_MunderDifflin.Repos
                                 Width = reader.GetInt32(reader.GetOrdinal("Width")),
                                 Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+<<<<<<< HEAD
                                 //ImageURL = reader.GetString(reader.GetOrdinal("ImageUrl"))
+=======
+                                ImageURL = reader.GetString(reader.GetOrdinal("ImageURL"))
+>>>>>>> main
                             };
                             papers.Add(paper);
                         }
@@ -61,7 +65,7 @@ namespace Stark_MunderDifflin.Repos
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, [Name], Color, [Length], Width, [Weight], Price
+                        SELECT Id, [Name], Color, [Length], Width, [Weight], Price, ImageURL
                         FROM Paper
                         WHERE Id = @id";
                     //, ImageURL
@@ -80,7 +84,11 @@ namespace Stark_MunderDifflin.Repos
                                 Width = reader.GetInt32(reader.GetOrdinal("Width")),
                                 Weight = reader.GetInt32(reader.GetOrdinal("Weight")),
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+<<<<<<< HEAD
                                 //ImageURL = reader.GetString(reader.GetOrdinal("ImageUrl"))
+=======
+                                ImageURL = reader.GetString(reader.GetOrdinal("ImageURL"))
+>>>>>>> main
                             };
                             return paper;
                         }
