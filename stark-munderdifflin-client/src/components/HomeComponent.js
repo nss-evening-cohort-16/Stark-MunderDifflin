@@ -10,42 +10,20 @@ import {
 
 export default function HomeComponent({ paper }) {
   return (
-<<<<<<< HEAD
-    <div className='home-page'>
+    <div className='home-container'>
       <Card className='paper-card'>
-        <CardTitle className='paper-name'>{paper.name}</CardTitle>
+        <CardTitle className='gitpaper-name'>{paper.name}</CardTitle>
         <CardImg
-          src={paper.imageURL}
           alt='paper image'
           className='paper-image'
+          src={paper.imageURL}
         />
         <CardBody>
           <CardSubtitle className='paper-color'>{paper.color}</CardSubtitle>
-          <div className='card-btn-container'>
-            <Button className='add-to-cart' type='button'>
-              <i className='btn btn-primary' />
-            </Button>
-          </div>
-=======
-    <div className ="home-container">
-<Card className="paper-card">
-        <CardTitle className="paper-name">{paper.name}</CardTitle>
-        <CardImg 
-          alt="paper image"
-          className="paper-image"
-          src={paper.imageURL}
-        />
-        <CardBody>
-          <CardSubtitle className="paper-color">{paper.color}        
-          </CardSubtitle>
-                 
-            <Button
-                className="add-to-cart"
-                type="button"
-              >
-                Add to Cart
-              </Button>        
->>>>>>> main
+
+          <Button className='add-to-cart' type='button'>
+            Add to Cart
+          </Button>
         </CardBody>
       </Card>
     </div>
