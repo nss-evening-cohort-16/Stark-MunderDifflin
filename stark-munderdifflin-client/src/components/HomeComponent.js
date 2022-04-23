@@ -22,17 +22,13 @@ export default function HomeComponent({ paper }) {
           src={paper.imageURL}
         />
         <CardBody>
-          <CardSubtitle className="paper-color">{paper.color}        
-          </CardSubtitle>
-                 
-            <Button
-                className="add-to-cart"
-                type="button"
-              >
-                Add to Cart
-              </Button>        
+          <CardSubtitle className='paper-color'>{paper.color}</CardSubtitle>
+
+          <Button className='add-to-cart' type='button'>
+            Add to Cart
+          </Button>
         </CardBody>
-      </Card>   
+      </Card>
     </div>
 </Link>
   )
