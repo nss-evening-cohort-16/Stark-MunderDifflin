@@ -44,7 +44,6 @@
   margin-left: auto;
 }
 
-<<<<<<< HEAD
 .cart-table-qty-container {
   display: flex;
   align-items: center;
@@ -53,46 +52,43 @@
 
 .paper-image {
   max-width: 10em;
-=======
-//Home Page
-.home-container {
-  display: flex;
-    justify-content:space-between;
+  //Home Page
+  .home-container {
+    display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     flex: row;
     border-radius: 10px;
     align-items: center;
-      display: inline-block;
-      .paper-card{
-        height: 400px;
-        width: 20rem;
-        border: 2px solid gray;
+    display: inline-block;
+    .paper-card {
+      height: 400px;
+      width: 20rem;
+      border: 2px solid gray;
+      border-radius: 5px;
+      overflow: hidden;
+      padding: 10px;
+      margin: 40px 20px;
+      display: flex;
+      .add-to-cart {
+        font-weight: 700;
+        font-size: 18px;
         border-radius: 5px;
-        overflow: hidden;
-        padding: 10px;
-        margin: 40px 20px;
-        display: flex;
-         .add-to-cart {
-          font-weight: 700;
-          font-size: 18px;
-          border-radius: 5px;
-          background-color:orange;
-          width: 60%;
-          height: 40px;
-          display: block;
-          cursor: pointer;
-          text-transform:uppercase;
-          margin: 15px auto;
-         
+        background-color: orange;
+        width: 60%;
+        height: 40px;
+        display: block;
+        cursor: pointer;
+        text-transform: uppercase;
+        margin: 15px auto;
       }
       .paper-image {
         width: 100%;
         max-width: 300px;
-    min-height: 200px;
-    display: block;
-    object-fit: cover;
-    }
+        min-height: 200px;
+        display: block;
+        object-fit: cover;
       }
-
->>>>>>> main
+    }
+  }
 }
