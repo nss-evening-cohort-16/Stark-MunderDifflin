@@ -5,14 +5,11 @@ export default function AppNavbar() {
   return (
     <div className='text-center mb-3'>
       <>
-        <Link className='nav-link active' to='/home'>
+        <Link className='nav-link active' to='/'>
           Home
         </Link>
         <Link className='nav-link active' to='/cart'>
           Cart
-        </Link>
-        <Link className='nav-link active' to='/details'>
-          Details
         </Link>
       </>
     </div>
