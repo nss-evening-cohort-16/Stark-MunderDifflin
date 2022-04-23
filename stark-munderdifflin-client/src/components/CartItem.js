@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { updateOrderItemQuantity } from '../data/cartData';
 
-export default function CartItem({ item }) {
+export default function CartItem({ item, quantityChange }) {
+  const [itemQty, setItemQuantity] = useState(item.quantity);
+
+  const handleQuantityChange = (e) => {
+    setItemQuantity(e.target.value);
+  };
+
+  const updateQuantity = async () => {
+    await updateOrderItemQuantity(item.id, itemQty);
+    quantityChange();
+  };
+
   return (
     <div>
       <table className='cart-table'>
@@ -18,7 +30,20 @@ export default function CartItem({ item }) {
               <img src={item.imageURL} alt='paper'></img>
             </td>
             <td className='cart-table-cell'>{item.name}</td>
-            <td className='cart-table-cell'>{item.quantity}</td>
+            <td className='cart-table-cell'>
+              <div className='cart-table-qty-container'>
+                Oty:
+                <input
+                  className='cart-qty-input'
+                  type='text'
+                  value={itemQty}
+                  onChange={handleQuantityChange}
+                ></input>
+                <button className='btn btn-primary' onClick={updateQuantity}>
+                  Update
+                </button>
+              </div>
+            </td>
             <td className='cart-table-cell'>{item.price}</td>
           </tr>
         </tbody>

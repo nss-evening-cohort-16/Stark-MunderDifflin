@@ -8,4 +8,10 @@ const getPaperItemsByOrder = async () => {
   return items.data;
 };
 
-export default getPaperItemsByOrder;
+const updateOrderItemQuantity = async (orderItemId, quantity) => {
+  await axios.put(`${dbURL}/Order/OrderItems/${orderItemId}`, {
+    Quantity: quantity,
+  });
+};
+
+export { getPaperItemsByOrder, updateOrderItemQuantity };
