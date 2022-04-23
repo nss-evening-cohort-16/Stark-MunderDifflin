@@ -1,5 +1,5 @@
 const databaseConfig = {
-    databaseURL: process.env.DATABASE_URL_KEY,
+  databaseURL: process.env.REACT_APP_DBURL,
 };
 
 export default databaseConfig;
