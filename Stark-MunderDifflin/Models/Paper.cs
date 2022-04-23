@@ -9,5 +9,6 @@
         public int Length { get; set; }
         public int Weight {get; set; }
         public decimal Price { get; set; }
+        public string? ImageURL { get; set; }
     }
 }
