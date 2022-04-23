@@ -14,7 +14,6 @@
 
 .cart-table-row {
   align-items: center;
-  border: 1px solid black;
   min-width: 200em;
 }
 
@@ -22,6 +21,15 @@
   border: 1px solid black;
   min-width: 20em;
   text-align: center;
+}
+
+.cart-table-cell-h-img {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+}
+.cart-table-cell-r-img {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .cart-submit {
