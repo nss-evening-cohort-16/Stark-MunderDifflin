@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardTitle,
@@ -9,13 +10,15 @@ import {
 } from 'reactstrap';
 
 export default function HomeComponent({ paper }) {
+
   return (
-    <div className='home-container'>
-      <Card className='paper-card'>
-        <CardTitle className='gitpaper-name'>{paper.name}</CardTitle>
-        <CardImg
-          alt='paper image'
-          className='paper-image'
+<Link to={`/PaperDetail/${paper.id}`}>
+    <div className ="home-container">
+<Card className="paper-card">
+        <CardTitle className="paper-name">{paper.name}</CardTitle>
+        <CardImg 
+          alt="paper image"
+          className="paper-image"
           src={paper.imageURL}
         />
         <CardBody>
@@ -27,7 +30,8 @@ export default function HomeComponent({ paper }) {
         </CardBody>
       </Card>
     </div>
-  );
+</Link>
+  )
 }
 
 // Home.propTypes = {}
