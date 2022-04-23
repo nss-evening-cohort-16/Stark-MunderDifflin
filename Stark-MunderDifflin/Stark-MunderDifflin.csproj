@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Stark_MunderDifflin</RootNamespace>
+    <UserSecretsId>7c2e62c4-9087-44e3-997b-584f1992ffa6</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
