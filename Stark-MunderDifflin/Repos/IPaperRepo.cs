@@ -6,5 +6,6 @@ namespace Stark_MunderDifflin.Repos
     {
         List<Paper> GetAll();
         Paper? GetById(int id);
+        void AddPaper(Paper paper);
     }
 }
