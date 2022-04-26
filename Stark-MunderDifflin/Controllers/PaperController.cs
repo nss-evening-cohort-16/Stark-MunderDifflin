@@ -36,9 +36,20 @@ namespace Stark_MunderDifflin.Controllers
         }
 
         // POST api/<PaperController>
+      
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult PostOrder([FromBody] Paper newPaper)
         {
+            if (newPaper == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _paperRepo.AddPaper(newPaper);
+                return Ok(newPaper);
+            }
+
         }
 
         // PUT api/<PaperController>/5

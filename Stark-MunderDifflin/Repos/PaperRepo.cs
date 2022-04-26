@@ -53,6 +53,34 @@ namespace Stark_MunderDifflin.Repos
                 }
             }
         }
+        public void AddPaper(Paper paper)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Paper ([Name], Color, Length, Width, Weight, Price, ImageURL)
+                        OUTPUT INSERTED.ID
+                        VALUES (@name, @color, @length, @width, @weight, @price, @imageURL);
+                    ";
+
+                    cmd.Parameters.AddWithValue("@name", paper.Name);
+                    cmd.Parameters.AddWithValue("@color", paper.Color);
+                    cmd.Parameters.AddWithValue("@length", paper.Length);
+                    cmd.Parameters.AddWithValue("@width", paper.Width);
+                    cmd.Parameters.AddWithValue("@weight", paper.Weight);
+                    cmd.Parameters.AddWithValue("@price", paper.Price);
+                    cmd.Parameters.AddWithValue("ImageURL", paper.ImageURL);
+                   
+                    int id = (int)cmd.ExecuteScalar();
+
+                    paper.Id = id;
+                }
+            }
+        }
         public Paper? GetById(int id)
         {
             using (SqlConnection conn = Connection)
