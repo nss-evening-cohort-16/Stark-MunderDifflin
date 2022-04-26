@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { getPaperById } from '../data/paperData';
+import {
+  Card,
+  CardTitle,
+  CardBody,
+  Button,
+  CardSubtitle,
+  CardImg,
+} from 'reactstrap';
 
 // import PropTypes from 'prop-types'
 
@@ -9,18 +17,28 @@ export default function PaperDetails() {
   const { dbKey } = useParams();
 
   useEffect(() => {
-    // let isMounted = true;
     getPaperById(dbKey).then(setPaperDetail);
     return () => {
-      // isMounted = false;
     };
   }, []);
 
   
   return (
-      <h2>
-        {paperDetail.name}
-      </h2>
+    <div className='paper-details-container'>
+      <Card className='paper-details-card'>
+        <CardImg
+          alt="paper image"
+          className="paper-image"
+          src={paperDetail.imageURL}
+        />
+        <CardTitle className='paper-details-name'>{paperDetail.name}</CardTitle>
+        <CardBody>
+          <CardSubtitle className='paper-details-color'>{paperDetail.color}</CardSubtitle>
+          <CardSubtitle className='paper-details-specs'>Paper Size: {paperDetail.length}" x {paperDetail.width}"</CardSubtitle>
+          <CardSubtitle className='paper-details-weight'>Paper weight: {paperDetail.weight} lbs</CardSubtitle>
+        </CardBody>
+      </Card>
+    </div>
   );
 };
 
