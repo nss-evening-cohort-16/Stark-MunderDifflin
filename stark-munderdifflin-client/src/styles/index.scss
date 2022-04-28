@@ -1,60 +1,62 @@
+//Cart View
 .cart-container {
   display: flex;
   flex-direction: column;
   padding: 0.5em;
   margin: auto;
+
+  .cart-items-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.25em;
+  }
+
+  .cart-btn {
+    width: 5em;
+    margin-top: 1em;
+    margin-right: 5em;
+    margin-left: auto;
+  }
 }
 
-.cart-items-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.25em;
-}
-
+//CartItem
 .cart-table-row {
   align-items: center;
   min-width: 200em;
+
+  .cart-table-cell-h-img {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+  }
+  .cart-table-cell-r-img {
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  .cart-table-cell {
+    border: 1px solid black;
+    min-width: 20em;
+    text-align: center;
+
+    .cart-table-qty-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .cart-qty-input {
+        max-width: 2em;
+        margin-right: 20%;
+      }
+
+      .cart-update-btn-img {
+        max-width: 1.1em;
+      }
+    }
+  }
 }
 
-.cart-table-cell {
-  border: 1px solid black;
-  min-width: 20em;
-  text-align: center;
-}
-
-.cart-table-cell-h-img {
-  border-left: 1px solid black;
-  border-top: 1px solid black;
-}
-.cart-table-cell-r-img {
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
-}
-
-.cart-qty-input {
-  max-width: 2em;
-  margin-right: 20%;
-}
-
-.cart-btn {
-  width: 5em;
-  margin-top: 1em;
-  margin-right: 5em;
-  margin-left: auto;
-}
-
-.cart-table-qty-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.cart-update-btn-img {
-  max-width: 1.1em;
-}
-
-//Home Page
+//Home View
 .home-container {
   display: flex;
   justify-content: space-between;
@@ -63,6 +65,7 @@
   border-radius: 10px;
   align-items: center;
   display: inline-block;
+
   .paper-card {
     height: 400px;
     width: 20rem;
@@ -72,6 +75,7 @@
     padding: 10px;
     margin: 40px 20px;
     display: flex;
+
     .add-to-cart {
       font-weight: 700;
       font-size: 18px;
@@ -94,20 +98,25 @@
   }
 }
 
-.paper-details-container{
+//Paper Details
+.paper-details-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  .paper-details-card{
+
+  .paper-details-card {
     border: 2px, solid, gray;
     width: 80%;
-    .paper-details-name{
+
+    .paper-details-name {
       font-size: 2.5em;
       font-weight: 500;
       text-decoration: underline;
     }
-    .paper-details-color, .paper-details-specs, .paper-details-weight{
+    .paper-details-color,
+    .paper-details-specs,
+    .paper-details-weight {
       font-size: 1.5em;
     }
   }
