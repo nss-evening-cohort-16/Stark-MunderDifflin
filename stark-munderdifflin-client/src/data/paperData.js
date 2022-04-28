@@ -13,8 +13,21 @@ const getPaperById = async (paperId) => {
     const paperArray = await axios.get(`${dbUrl}/Paper/${paperId}`)
     const paperData = paperArray.data    
     return paperData;
-}
+};
+
+const createPaper = (paperObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/Paper`, paperObj)
+  .then((response) => {
+    if(response.status > 300 || response.status < 200){ 
+      throw new Error(response.status)
+    }
+    else{
+      resolve()
+     }
+    })
+  .catch(reject);
+});
 
 
 
-export { getPaperById, getAllPapers } ;
+export { getPaperById, getAllPapers, createPaper } ;
