@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getPaperById, createPaper } from '../data/paperData';
+import { getPaperById, createPaper, updatePaper } from '../data/paperData';
 
 
 const initialState = {
@@ -59,7 +59,10 @@ export default function PaperForm() {
     const handleSubmit = (e) => {
       e.preventDefault();
       if (dbKey) {
-        console.log(formInput)
+        updatePaper(formInput).then(() => {
+          resetForm();
+          navigate('/');
+        });
       } else {
         createPaper({...formInput}).then(()=> {
           resetForm();

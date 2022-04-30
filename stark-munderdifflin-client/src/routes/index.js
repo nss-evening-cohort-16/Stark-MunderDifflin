@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { PaperDetails, PaperForm } from '../components/index';
+import { PaperDetails, PaperForm, EditPaper } from '../components/index';
 import { Home, Cart } from '../views/index';
 
 export default function AppRoutes() {
@@ -10,6 +10,7 @@ export default function AppRoutes() {
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/PaperDetail/:dbKey' element={<PaperDetails />} />
+        <Route path='/edit/:key' element={<EditPaper />} />
         <Route path='/PaperForm' element={<PaperForm />} />
       </Routes>
     </>

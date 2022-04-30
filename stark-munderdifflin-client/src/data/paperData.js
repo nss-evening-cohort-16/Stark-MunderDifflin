@@ -28,6 +28,12 @@ const createPaper = (paperObj) => new Promise((resolve, reject) => {
   .catch(reject);
 });
 
+const updatePaper = (paperObj) => new Promise((resolve, reject) => {
+  axios
+    .put(`${dbUrl}/Paper/${paperObj.Id}`, paperObj)
+    .then(() => getAllPapers().then(resolve))
+    .catch(reject);
+});
 
 
-export { getPaperById, getAllPapers, createPaper } ;
+export { getPaperById, getAllPapers, createPaper, updatePaper } ;
