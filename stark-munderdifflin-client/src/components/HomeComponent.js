@@ -30,12 +30,12 @@ export default function HomeComponent({ paper }) {
           <Button className='add-to-cart' type='button'>
             Add to Cart
           </Button>
-          <Link
+          <Button
                 className="edit-paper"
-                to={`/edit/${paper.Id}`}
+                onClick={() => navigate(`/edit/${paper.id}`)}
               >
             Edit
-              </Link>  
+              </Button>  
           </div>
         </CardBody>
       </Card>

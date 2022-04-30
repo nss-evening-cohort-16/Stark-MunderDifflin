@@ -28,9 +28,9 @@ const createPaper = (paperObj) => new Promise((resolve, reject) => {
   .catch(reject);
 });
 
-const updatePaper = (paperObj) => new Promise((resolve, reject) => {
+const updatePaper = (id, paperObj) => new Promise((resolve, reject) => {
   axios
-    .put(`${dbUrl}/Paper/${paperObj.Id}`, paperObj)
+    .put(`${dbUrl}/Paper/${id}`, paperObj)
     .then(() => getAllPapers().then(resolve))
     .catch(reject);
 });
