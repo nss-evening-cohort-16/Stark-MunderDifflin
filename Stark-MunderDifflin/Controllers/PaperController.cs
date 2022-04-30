@@ -52,10 +52,20 @@ namespace Stark_MunderDifflin.Controllers
 
         }
 
-        // PUT api/<PaperController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PATCH: api/<PaperController>/Edit/5
+        [HttpPut("Edit/{id}")]
+        public IActionResult UpdatePaper(int id, [FromBody] Paper paperObj)
         {
+            try
+            {
+            _paperRepo.UpdatePaper(id, paperObj);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
 
         // DELETE api/<PaperController>/5
