@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Stark_MunderDifflin.Models;
 using Stark_MunderDifflin.Repos;
 
@@ -18,6 +19,7 @@ namespace Stark_MunderDifflin.Controllers
         }
 
         // GET: api/<PaperController>
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {

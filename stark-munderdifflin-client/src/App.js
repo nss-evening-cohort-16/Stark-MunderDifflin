@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Routes from './routes/index';
 import AppNavbar from './components/AppNavbar';
 import auth from './data/auth/firebaseConfig';
+import userExistsInDB from './data/userData';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -15,9 +16,10 @@ function App() {
           fullName: authed.displayName,
           profilePic: authed.photoURL,
           user: authed.email.split('@')[0],
-          accessToken: authed.accessToken,
         };
         setUser(userObj);
+        sessionStorage.setItem('idToken', authed.accessToken);
+        userExistsInDB(authed.accessToken);
       } else if (user || user === null) {
         setUser(false);
       }

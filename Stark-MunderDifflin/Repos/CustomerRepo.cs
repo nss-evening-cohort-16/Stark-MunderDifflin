@@ -88,5 +88,56 @@ namespace Stark_MunderDifflin.Repos
                 }
             }
         }
+
+        public bool CustomerExists(string uid)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT * FROM Customer
+                                        WHERE UID = @uid 
+                                        ";
+                    cmd.Parameters.AddWithValue("@uid", uid);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        reader.Close();
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public int CreateCustomer(Customer customer)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        INSERT INTO Customer ([Name], Email, [UID])
+                                        OUTPUT INSERTED.Id
+                                        VALUES (@name, @uid, @email)
+                                        ";
+                    cmd.Parameters.AddWithValue("@name", customer.Name);
+                    cmd.Parameters.AddWithValue("@uid", customer.UID);
+                    cmd.Parameters.AddWithValue("@email", customer.Email);
+
+                    int id = (int)cmd.ExecuteScalar();
+
+                    return id;
+                }
+            }
+        }
     }
 }
