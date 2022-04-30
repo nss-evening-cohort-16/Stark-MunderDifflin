@@ -116,5 +116,35 @@ namespace Stark_MunderDifflin.Repos
                 }
             }
         }
+
+        public void UpdatePaper(int id, Paper paper)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE Paper
+                                        SET [Name] = @name,
+	                                        Color = @color,
+	                                        [Length] = @length,
+	                                        Width = @width,
+	                                        [Weight] = @weight,
+	                                        Price = @price,
+	                                        ImageURL = @imageURL
+		                                        WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", paper.Name);
+                    cmd.Parameters.AddWithValue("@color", paper.Color);
+                    cmd.Parameters.AddWithValue("@length", paper.Length);
+                    cmd.Parameters.AddWithValue("@width", paper.Width);
+                    cmd.Parameters.AddWithValue("@weight", paper.Weight);
+                    cmd.Parameters.AddWithValue("@price", paper.Price);
+                    cmd.Parameters.AddWithValue("@imageURL", paper.ImageURL);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
