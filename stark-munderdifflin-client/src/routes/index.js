@@ -10,7 +10,7 @@ export default function AppRoutes() {
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/PaperDetail/:dbKey' element={<PaperDetails />} />
-        <Route path='/edit/:dbKey' element={<EditPaper />} />
+        <Route path='/Edit/:dbKey' element={<EditPaper />} />
         <Route path='/PaperForm' element={<PaperForm />} />
       </Routes>
     </>

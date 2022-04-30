@@ -32,7 +32,7 @@ export default function HomeComponent({ paper }) {
           </Button>
           <Button
                 className="edit-paper"
-                onClick={() => navigate(`/edit/${paper.id}`)}
+                onClick={() => navigate(`/Edit/${paper.id}`)}
               >
             Edit
               </Button>  
