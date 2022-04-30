@@ -30,7 +30,7 @@ const createPaper = (paperObj) => new Promise((resolve, reject) => {
 
 const updatePaper = (id, paperObj) => new Promise((resolve, reject) => {
   axios
-    .put(`${dbUrl}/Paper/${id}`, paperObj)
+    .put(`${dbUrl}/Paper/Edit/${id}`, paperObj)
     .then(() => getAllPapers().then(resolve))
     .catch(reject);
 });
