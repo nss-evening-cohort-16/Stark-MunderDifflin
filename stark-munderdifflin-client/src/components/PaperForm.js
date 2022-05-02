@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getPaperById, createPaper } from '../data/paperData';
+import { getPaperById, createPaper, updatePaper } from '../data/paperData';
 
 
 const initialState = {
@@ -17,13 +17,16 @@ export default function PaperForm() {
     // const [adminID, setAdminID] = useState(null);
     const [formInput, setFormInput] = useState({});
     const { dbKey } = useParams();
+    
     const navigate = useNavigate();
 
     useEffect(() => {
+      
       if(dbKey) {
         getPaperById(dbKey).then((obj) => {
+          console.log(obj);
           setFormInput({
-            id: obj?.id,
+            id: obj?.dbKey,
             name: obj?.name,
             color: obj?.color,
             width: obj?.width,
@@ -59,7 +62,10 @@ export default function PaperForm() {
     const handleSubmit = (e) => {
       e.preventDefault();
       if (dbKey) {
-        console.log(formInput)
+        updatePaper(dbKey, formInput).then(() => {
+          resetForm();
+          navigate('/');
+        });
       } else {
         createPaper({...formInput}).then(()=> {
           resetForm();
@@ -150,7 +156,9 @@ export default function PaperForm() {
         />
       </div>
     <button type="submit">
-      Submit
+
+      {dbKey ? 'Update' : 'Submit'}
+
     </button>
     </form>
     </>
