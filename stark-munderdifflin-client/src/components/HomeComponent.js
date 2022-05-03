@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   Card,
   CardTitle,
@@ -10,9 +10,10 @@ import {
 } from 'reactstrap';
 
 export default function HomeComponent({ paper }) {
+  const navigate = useNavigate();
 
   return (
-<Link to={`/PaperDetail/${paper.id}`}>
+
     <div className ="home-container">
 <Card className="paper-card">
         <CardTitle className="paper-name">{paper.name}</CardTitle>
@@ -20,17 +21,26 @@ export default function HomeComponent({ paper }) {
           alt="paper image"
           className="paper-image"
           src={paper.imageURL}
+          onClick={() => navigate(`/PaperDetail/${paper.id}`)}
         />
         <CardBody>
-          <CardSubtitle className='paper-color'>{paper.color}</CardSubtitle>
-
+          <CardSubtitle className='paper-color'>{paper.color}</CardSubtitle> 
+          <div className="paper-btn-container"> 
+          
           <Button className='add-to-cart' type='button'>
             Add to Cart
           </Button>
+          <Button
+                className="edit-paper"
+                onClick={() => navigate(`/Edit/${paper.id}`)}
+              >
+            Edit
+              </Button>  
+          </div>
         </CardBody>
       </Card>
     </div>
-</Link>
+
   )
 }
 
