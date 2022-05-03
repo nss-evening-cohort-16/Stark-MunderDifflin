@@ -14,14 +14,11 @@ import {
 export default function PaperDetails() {
   const [paperDetail, setPaperDetail] = useState([]);
   const { dbKey } = useParams();
-
   useEffect(() => {
     getPaperById(dbKey).then(setPaperDetail);
     return () => {
     };
-  }, []);
-
-  
+  }, []); 
   return (
     <div className='paper-details-container'>
       <Card className='paper-details-card'>
@@ -35,8 +32,10 @@ export default function PaperDetails() {
           <CardSubtitle className='paper-details-color'>{paperDetail.color}</CardSubtitle>
           <CardSubtitle className='paper-details-specs'>Paper Size: {paperDetail.length}" x {paperDetail.width}"</CardSubtitle>
           <CardSubtitle className='paper-details-weight'>Paper weight: {paperDetail.weight} lbs</CardSubtitle>
-        </CardBody>
+        </CardBody>  
+         
       </Card>
+      
     </div>
   );
 };

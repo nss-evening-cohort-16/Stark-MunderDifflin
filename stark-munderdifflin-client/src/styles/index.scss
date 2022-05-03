@@ -75,7 +75,14 @@
     padding: 10px;
     margin: 40px 20px;
     display: flex;
+<<<<<<< HEAD
 
+=======
+    position: relative;
+    flex: row;
+    box-shadow: 4px 4px 8px hsla(0, 0%, 0%, 0.471); 
+  } 
+>>>>>>> bc28131eaf986ffa1473cc8d4aecb60def434291
     .add-to-cart {
       font-weight: 700;
       font-size: 18px;
@@ -96,7 +103,7 @@
       object-fit: cover;
     }
   }
-}
+
 
 //Paper Details
 .paper-details-container {
