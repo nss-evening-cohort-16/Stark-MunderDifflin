@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { signInUser, signOutUser } from '../data/auth/firebaseSignInOut';
 import {
   Collapse,

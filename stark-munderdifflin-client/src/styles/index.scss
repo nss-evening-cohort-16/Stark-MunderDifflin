@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   padding: 0.5em;
-  margin: 2em auto;
+  margin: auto;
 
   .cart-items-container {
     display: flex;
@@ -75,14 +75,10 @@
     padding: 10px;
     margin: 40px 20px;
     display: flex;
-<<<<<<< HEAD
-
-=======
     position: relative;
     flex: row;
-    box-shadow: 4px 4px 8px hsla(0, 0%, 0%, 0.471); 
-  } 
->>>>>>> bc28131eaf986ffa1473cc8d4aecb60def434291
+    box-shadow: 4px 4px 8px hsla(0, 0%, 0%, 0.471);
+
     .add-to-cart {
       font-weight: 700;
       font-size: 18px;
@@ -104,89 +100,109 @@
     }
   }
 
+  //Paper Details
+  .paper-details-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 
-//Paper Details
-.paper-details-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
+    .paper-details-card {
+      border: 2px, solid, gray;
+      width: 80%;
 
-  .paper-details-card {
-    border: 2px, solid, gray;
-    width: 80%;
-
-    .paper-details-name {
-      font-size: 2.5em;
-      font-weight: 500;
-      text-decoration: underline;
-    }
-    .paper-details-color,
-    .paper-details-specs,
-    .paper-details-weight {
-      font-size: 1.5em;
+      .paper-details-name {
+        font-size: 2.5em;
+        font-weight: 500;
+        text-decoration: underline;
+      }
+      .paper-details-color,
+      .paper-details-specs,
+      .paper-details-weight {
+        font-size: 1.5em;
+      }
     }
   }
 }
 
 //Navbar
+.nav-span {
+  color: white;
+  font-size: 1.2em;
+  padding: 0 0.5em 0 0.5em;
+  line-height: 1.75em;
+  text-shadow: 1px 1px 1px black;
+}
+
+.nav-span:hover,
+.nav-span-user:hover {
+  filter: brightness(80%);
+}
+
+.nav-span-user {
+  color: white;
+  font-size: 1.1em;
+}
+
+.dropdown-toggle.nav-link::after {
+  color: white;
+}
+
+.dropdown-menu.show {
+  background-color: rgb(26, 98, 110);
+  color: white;
+  margin-top: 0.3em;
+  border-radius: 0 0 6px 6px;
+  border-top: none;
+}
+
+.dropdown-menu.show :first-child:hover {
+  background-color: transparent;
+}
+
+.dropdown-menu.show a.nav-link {
+  color: white;
+}
+
+.dropdown-menu.show a.nav-link:hover {
+  color: white;
+  filter: brightness(80%);
+}
+
+.navbar {
+  background-color: rgb(26, 98, 110);
+  height: 3.5em;
+}
+
+.nav-logo {
+  width: 5em;
+  margin: 0;
+  padding: 0;
+}
+
 .navbar-container {
   width: 100%;
+  margin-bottom: 1em;
+}
 
-  .navbar {
-    height: 4em;
-    background-color: rgb(253, 233, 117);
+.login-btn-container {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  margin: 0 1em 0 auto;
+}
 
-    .nav-logo {
-      width: 6em;
-      margin: 0;
-      padding: 0;
-    }
+.login-btn {
+  width: 10em;
+}
 
-    .nav-span {
-      color: white;
-      font-size: 1.5em;
-      padding: 2em 0em 0 0.5em;
-      line-height: 4em;
-      text-shadow: 1px 1px 1px black;
-    }
+.user-img {
+  border: 1px transparent;
+  border-radius: 100px;
+  width: 2em;
+  margin-right: 0.5em;
+}
 
-    .nav-span:hover,
-    .nav-span-user:hover {
-      filter: brightness(95%);
-    }
-
-    .user-drop {
-      margin: auto 1em auto auto;
-      margin-left: auto;
-      line-height: 4em;
-    }
-
-    .user-img {
-      border: 1px transparent;
-      border-radius: 100px;
-      width: 2.5em;
-      margin: -0.2em 0.5em 0 auto;
-    }
-
-    .nav-span-user {
-      font-size: 1.2em;
-    }
-
-    .login-btn-container {
-      background-color: transparent;
-      padding: 0;
-      border: none;
-      margin: 0 1em 0 auto;
-    }
-
-    .dropdown-menu.show {
-      background-color: rgb(253, 233, 117);
-      color: white;
-      margin-top: -0.55em;
-      margin-left: 2.5em;
-      border-radius: 0 0 6px 6px;
-      border-top: none;
-    }
-  }
+.user-drop {
+  margin: 0 1em 0 auto;
 }

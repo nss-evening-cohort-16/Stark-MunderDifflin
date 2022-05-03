@@ -18,7 +18,6 @@ const getPaperById = async (paperId) => {
   return paperData;
 };
 
-<<<<<<< HEAD
 const createPaper = (paperObj) =>
   new Promise((resolve, reject) => {
     axios
@@ -33,28 +32,12 @@ const createPaper = (paperObj) =>
       .catch(reject);
   });
 
-export { getPaperById, getAllPapers, createPaper };
-=======
-const createPaper = (paperObj) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/Paper`, paperObj)
-  .then((response) => {
-    if(response.status > 300 || response.status < 200){ 
-      throw new Error(response.status)
-    }
-    else{
-      resolve()
-     }
-    })
-  .catch(reject);
-});
+const updatePaper = (id, paperObj) =>
+  new Promise((resolve, reject) => {
+    axios
+      .put(`${dbUrl}/Paper/Edit/${id}`, paperObj)
+      .then(() => getAllPapers().then(resolve))
+      .catch(reject);
+  });
 
-const updatePaper = (id, paperObj) => new Promise((resolve, reject) => {
-  axios
-    .put(`${dbUrl}/Paper/Edit/${id}`, paperObj)
-    .then(() => getAllPapers().then(resolve))
-    .catch(reject);
-});
-
-
-export { getPaperById, getAllPapers, createPaper, updatePaper } ;
->>>>>>> main
+export { getPaperById, getAllPapers, createPaper, updatePaper };
