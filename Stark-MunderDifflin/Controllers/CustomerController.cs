@@ -53,7 +53,7 @@ namespace Stark_MunderDifflin.Controllers
             return Ok(customer);
         }
 
-        // POST api/<CustomerController>
+        // GET api/Auth/<CustomerController>
         [Authorize]
         [HttpGet("Auth")]
         public async Task<IActionResult> PostAsync([FromHeader] string idToken)
