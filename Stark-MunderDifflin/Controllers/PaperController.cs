@@ -36,7 +36,7 @@ namespace Stark_MunderDifflin.Controllers
         }
 
         // POST api/<PaperController>
-      
+
         [HttpPost]
         public IActionResult PostOrder([FromBody] Paper newPaper)
         {
@@ -58,7 +58,7 @@ namespace Stark_MunderDifflin.Controllers
         {
             try
             {
-            _paperRepo.UpdatePaper(id, paperObj);
+                _paperRepo.UpdatePaper(id, paperObj);
 
                 return Ok();
             }
@@ -69,9 +69,13 @@ namespace Stark_MunderDifflin.Controllers
         }
 
         // DELETE api/<PaperController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         public void Delete(int id)
         {
+            _paperRepo.DeletePaper(id); 
+         
         }
     }
 }
+
+
