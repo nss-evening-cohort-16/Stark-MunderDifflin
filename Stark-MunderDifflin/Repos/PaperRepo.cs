@@ -117,6 +117,25 @@ namespace Stark_MunderDifflin.Repos
             }
         }
 
+        public void DeletePaper(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        DELETE FROM Paper
+                        WHERE Id = @id
+                    ";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public void UpdatePaper(int id, Paper paper)
         {
             using (SqlConnection conn = Connection)
