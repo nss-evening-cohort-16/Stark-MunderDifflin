@@ -6,6 +6,7 @@ using Stark_MunderDifflin.Repos;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var firebaseCredPath = builder.Configuration["FirebaseCredPath"];
 
 // Add services to the container.
 
@@ -28,7 +29,7 @@ builder.Services.AddCors(options =>
 
 FirebaseApp.Create(new AppOptions()
 {
-    Credential = GoogleCredential.GetApplicationDefault(),
+    Credential = GoogleCredential.FromFile(firebaseCredPath),
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -45,7 +46,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-var dbConnectionString = builder.Configuration["starkConnectionString"];
+var dbConnectionString = builder.Configuration["DefaultConnection"];
 
 var app = builder.Build();
 

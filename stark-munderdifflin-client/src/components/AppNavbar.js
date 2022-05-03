@@ -48,9 +48,10 @@ export default function AppNavbar({ user }) {
                     <img
                       className='user-img'
                       src={user.profilePic}
+                      referrerPolicy='no-referrer'
                       alt='user'
                     />
-                    <span className='nav-span-user'>{user?.fullName}</span>
+                    <span className='nav-span-user'>{user?.username}</span>
                   </DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem>

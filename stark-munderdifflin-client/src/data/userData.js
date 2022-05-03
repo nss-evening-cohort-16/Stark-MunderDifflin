@@ -3,9 +3,10 @@ import databaseConfig from './auth/apiKeys';
 
 const dbUrl = databaseConfig.databaseURL;
 
-const userExistsInDB = async (token) => {
-  axios.post(`${dbUrl}/Customer`, {
-    headers: { Authorization: `Bearer ${token}` },
+const userExistsInDB = async () => {
+  const token = sessionStorage.getItem('idToken');
+  await axios.get(`${dbUrl}/Customer/Auth`, {
+    headers: { Authorization: 'Bearer ' + token, idToken: token },
   });
 };
 

@@ -127,7 +127,7 @@ namespace Stark_MunderDifflin.Repos
                     cmd.CommandText = @"
                                         INSERT INTO Customer ([Name], Email, [UID])
                                         OUTPUT INSERTED.Id
-                                        VALUES (@name, @uid, @email)
+                                        VALUES (@name, @email, @uid)
                                         ";
                     cmd.Parameters.AddWithValue("@name", customer.Name);
                     cmd.Parameters.AddWithValue("@uid", customer.UID);

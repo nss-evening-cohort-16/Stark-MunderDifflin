@@ -10,12 +10,11 @@ function App() {
   useEffect(() => {
     auth.onAuthStateChanged((authed) => {
       if (authed) {
-        console.log(authed);
         const userObj = {
           uid: authed.uid,
           fullName: authed.displayName,
           profilePic: authed.photoURL,
-          user: authed.email.split('@')[0],
+          username: authed.email.split('@')[0],
         };
         setUser(userObj);
         sessionStorage.setItem('idToken', authed.accessToken);

@@ -55,11 +55,11 @@ namespace Stark_MunderDifflin.Controllers
 
         // POST api/<CustomerController>
         [Authorize]
-        [HttpPost]
+        [HttpGet("Auth")]
         public async Task<IActionResult> PostAsync([FromHeader] string idToken)
         {
             FirebaseToken decoded = await FirebaseAuth.DefaultInstance.VerifyIdTokenAsync(idToken);
-            var token = User.FindFirst(Claim => Claim.Type == "user_id");
+            //var token = User.FindFirst(Claim => Claim.Type == "user_id");
             var uid = decoded.Uid;
             bool customerExists = _customerRepo.CustomerExists(uid);
             if (!customerExists)
