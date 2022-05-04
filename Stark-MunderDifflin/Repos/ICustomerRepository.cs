@@ -6,5 +6,8 @@ namespace Stark_MunderDifflin.Repos
     {
         Customer GetCustomerByEmail(string email);
         Customer GetCustomerByUID(string uid);
+
+        bool CustomerExists(string uid);
+        int CreateCustomer(Customer customer);
     }
 }
