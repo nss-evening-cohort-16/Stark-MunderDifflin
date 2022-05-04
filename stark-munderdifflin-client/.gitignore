@@ -2,6 +2,7 @@
 .vscode/
 /build
 package-lock.json
+serviceAccountKey.json
 
 # dependencies
 /node_modules

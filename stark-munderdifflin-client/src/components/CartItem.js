@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { updateOrderItemQuantity } from '../data/cartData';
+import updateIcon from '../assets/updateIcon.ico';
 
 export default function CartItem({ item, quantityChange }) {
   const [itemQty, setItemQuantity] = useState(item.quantity);
@@ -39,8 +40,12 @@ export default function CartItem({ item, quantityChange }) {
                   value={itemQty}
                   onChange={handleQuantityChange}
                 ></input>
-                <button className='btn btn-primary' onClick={updateQuantity}>
-                  Update
+                <button className='btn btn-success' onClick={updateQuantity}>
+                  <img
+                    className='cart-update-btn-img'
+                    src={updateIcon}
+                    alt='update'
+                  />
                 </button>
               </div>
             </td>

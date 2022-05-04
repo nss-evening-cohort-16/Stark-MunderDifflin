@@ -1,56 +1,62 @@
+//Cart View
 .cart-container {
   display: flex;
   flex-direction: column;
   padding: 0.5em;
   margin: auto;
+
+  .cart-items-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.25em;
+  }
+
+  .cart-btn {
+    width: 5em;
+    margin-top: 1em;
+    margin-right: 5em;
+    margin-left: auto;
+  }
 }
 
-.cart-items-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.25em;
-}
-
+//CartItem
 .cart-table-row {
   align-items: center;
   min-width: 200em;
+
+  .cart-table-cell-h-img {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+  }
+  .cart-table-cell-r-img {
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  .cart-table-cell {
+    border: 1px solid black;
+    min-width: 20em;
+    text-align: center;
+
+    .cart-table-qty-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .cart-qty-input {
+        max-width: 2em;
+        margin-right: 20%;
+      }
+
+      .cart-update-btn-img {
+        max-width: 1.1em;
+      }
+    }
+  }
 }
 
-.cart-table-cell {
-  border: 1px solid black;
-  min-width: 20em;
-  text-align: center;
-}
-
-.cart-table-cell-h-img {
-  border-left: 1px solid black;
-  border-top: 1px solid black;
-}
-.cart-table-cell-r-img {
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
-}
-
-.cart-qty-input {
-  max-width: 2em;
-  margin-right: 20%;
-}
-
-.cart-btn {
-  width: 5em;
-  margin-top: 1em;
-  margin-right: 5em;
-  margin-left: auto;
-}
-
-.cart-table-qty-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-//Home Page
+//Home View
 .home-container {
   display: flex;
   justify-content: space-between;
@@ -59,6 +65,7 @@
   border-radius: 10px;
   align-items: center;
   display: inline-block;
+
   .paper-card {
     height: 400px;
     width: 20rem;
@@ -70,8 +77,8 @@
     display: flex;
     position: relative;
     flex: row;
-    box-shadow: 4px 4px 8px hsla(0, 0%, 0%, 0.471); 
-  } 
+    box-shadow: 4px 4px 8px hsla(0, 0%, 0%, 0.471);
+
     .add-to-cart {
       font-weight: 700;
       font-size: 18px;
@@ -93,22 +100,109 @@
     }
   }
 
+  //Paper Details
+  .paper-details-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 
-.paper-details-container{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  .paper-details-card{
-    border: 2px, solid, gray;
-    width: 80%;
-    .paper-details-name{
-      font-size: 2.5em;
-      font-weight: 500;
-      text-decoration: underline;
-    }
-    .paper-details-color, .paper-details-specs, .paper-details-weight{
-      font-size: 1.5em;
+    .paper-details-card {
+      border: 2px, solid, gray;
+      width: 80%;
+
+      .paper-details-name {
+        font-size: 2.5em;
+        font-weight: 500;
+        text-decoration: underline;
+      }
+      .paper-details-color,
+      .paper-details-specs,
+      .paper-details-weight {
+        font-size: 1.5em;
+      }
     }
   }
+}
+
+//Navbar
+.nav-span {
+  color: white;
+  font-size: 1.2em;
+  padding: 0 0.5em 0 0.5em;
+  line-height: 1.75em;
+  text-shadow: 1px 1px 1px black;
+}
+
+.nav-span:hover,
+.nav-span-user:hover {
+  filter: brightness(80%);
+}
+
+.nav-span-user {
+  color: white;
+  font-size: 1.1em;
+}
+
+.dropdown-toggle.nav-link::after {
+  color: white;
+}
+
+.dropdown-menu.show {
+  background-color: rgb(26, 98, 110);
+  color: white;
+  margin-top: 0.3em;
+  border-radius: 0 0 6px 6px;
+  border-top: none;
+}
+
+.dropdown-menu.show :first-child:hover {
+  background-color: transparent;
+}
+
+.dropdown-menu.show a.nav-link {
+  color: white;
+}
+
+.dropdown-menu.show a.nav-link:hover {
+  color: white;
+  filter: brightness(80%);
+}
+
+.navbar {
+  background-color: rgb(26, 98, 110);
+  height: 3.5em;
+}
+
+.nav-logo {
+  width: 5em;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-container {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.login-btn-container {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  margin: 0 1em 0 auto;
+}
+
+.login-btn {
+  width: 10em;
+}
+
+.user-img {
+  border: 1px transparent;
+  border-radius: 100px;
+  width: 2em;
+  margin-right: 0.5em;
+}
+
+.user-drop {
+  margin: 0 1em 0 auto;
 }
