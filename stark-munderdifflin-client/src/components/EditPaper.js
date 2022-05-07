@@ -5,7 +5,6 @@ import { getPaperById } from '../data/paperData';
 
 export default function EditProduct() {
   let { dbKey } = useParams();
-  console.log(dbKey);
   const [editItem, setEditItem] = useState({});
 
   useEffect(() => {
