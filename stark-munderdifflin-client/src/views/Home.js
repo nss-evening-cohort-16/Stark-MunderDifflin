@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAllPapers } from '../data/paperData';
 import HomeComponent from '../components/HomeComponent';
 
-export default function Home() {
+export default function Home({user}) {
   const [papers, setPapers] = useState([]);
   
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Home() {
           <HomeComponent 
           key={paper.id}         
             paper={paper}
-           
+            user={user}
           
           />
         ))}
