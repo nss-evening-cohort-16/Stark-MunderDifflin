@@ -48,7 +48,7 @@ namespace Stark_MunderDifflin.Controllers
 
                 return Ok(cart);
             }
-            return NotFound();
+            return Ok(null);
         }
 
         // GET api/<OrderController>/5
