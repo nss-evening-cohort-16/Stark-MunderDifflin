@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FirebaseAdmin.Auth;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Stark_MunderDifflin.Models;
 using Stark_MunderDifflin.Repos;
 
@@ -6,7 +8,7 @@ using Stark_MunderDifflin.Repos;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Stark_MunderDifflin.Controllers
-{
+{   
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -51,11 +53,31 @@ namespace Stark_MunderDifflin.Controllers
             return Ok(customer);
         }
 
-        //// POST api/<CustomerController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        // GET api/Auth/<CustomerController>
+        [Authorize]
+        [HttpGet("Auth")]
+        public async Task<IActionResult> PostAsync([FromHeader] string idToken)
+        {
+            FirebaseToken decoded = await FirebaseAuth.DefaultInstance.VerifyIdTokenAsync(idToken);
+            //var token = User.FindFirst(Claim => Claim.Type == "user_id");
+            var uid = decoded.Uid;
+            bool customerExists = _customerRepo.CustomerExists(uid);
+            if (!customerExists)
+            {
+                Customer userFromToken = new Customer()
+                {
+                    Name = (string)decoded.Claims.GetValueOrDefault("name"),
+                    Email = (string)decoded.Claims.GetValueOrDefault("email"),
+                    UID = uid,
+                };
+
+                int customerId = _customerRepo.CreateCustomer(userFromToken);
+                return Ok($"Customer Created ID={customerId}");
+
+            }
+            return Ok("Customer Exists");
+
+        }
 
         //// PUT api/<CustomerController>/5
         //[HttpPut("{id}")]

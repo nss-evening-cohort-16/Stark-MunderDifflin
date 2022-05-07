@@ -24,7 +24,6 @@ export default function PaperForm() {
       
       if(dbKey) {
         getPaperById(dbKey).then((obj) => {
-          console.log(obj);
           setFormInput({
             id: obj?.dbKey,
             name: obj?.name,
