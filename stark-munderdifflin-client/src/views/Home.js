@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllPapers } from '../data/paperData';
+import { getAllPapers, deletePaper } from '../data/paperData';
 import HomeComponent from '../components/HomeComponent';
 
 export default function Home({user}) {
@@ -15,6 +15,12 @@ export default function Home({user}) {
     };
   }, []);
 
+  const handleDelete = async (paperId) => {
+    await deletePaper(paperId) 
+    getAllPapers().then((paperArray) => setPapers(paperArray));
+    
+        }
+
   return (
     <div className="paper-view">
       <>
@@ -24,6 +30,7 @@ export default function Home({user}) {
             paper={paper}
             user={user}
           
+            handleDelete={handleDelete}
           />
         ))}
       </>
