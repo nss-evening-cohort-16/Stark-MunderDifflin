@@ -81,7 +81,7 @@ namespace Stark_MunderDifflin.Repos
                     cmd.CommandText = @"
                                         Select *
                                         FROM [Order]
-                                        Where CustomerId = @uid
+                                        WHERE CustomerId = @uid
                                       ";
                     cmd.Parameters.AddWithValue("@uid", uid);
 
@@ -99,6 +99,38 @@ namespace Stark_MunderDifflin.Repos
                             customerOrders.Add(customerOrder);
                         }
                         return customerOrders;
+                    }
+                }
+            }
+        }
+        
+        public Order? GetOpenOrderByUID(string uid)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        Select Id, CustomerId, IsOpen
+                                        FROM [Order]
+                                        WHERE CustomerId = @uid AND isOpen = 1
+                                      ";
+                    cmd.Parameters.AddWithValue("@uid", uid);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Order customerOrder = new Order()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                CustomerId = reader.GetString(reader.GetOrdinal("CustomerId")),
+                                IsOpen = reader.GetBoolean(reader.GetOrdinal("IsOpen")),
+                            };
+                            return customerOrder;
+                        }
+                        return null;
                     }
                 }
             }

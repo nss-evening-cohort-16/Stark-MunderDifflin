@@ -19,8 +19,10 @@ function App() {
         setUser(userObj);
         sessionStorage.setItem('idToken', authed.accessToken);
         userExistsInDB(authed.accessToken);
+        console.log(authed);
       } else if (user || user === null) {
         setUser(false);
+        sessionStorage.removeItem('idToken');
       }
     });
   }, []);

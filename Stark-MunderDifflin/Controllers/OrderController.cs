@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Stark_MunderDifflin.Models;
 using Stark_MunderDifflin.Repos;
 using System.Text.RegularExpressions;
@@ -28,8 +29,27 @@ namespace Stark_MunderDifflin.Controllers
             if (orders == null) return NotFound();
             return Ok(orders);
         }
-       
 
+        // GET: api/<OrderController>/Cart
+        [Authorize]
+        [HttpGet("Cart")]
+        public IActionResult GetCart()
+        {
+            var uid = User.FindFirst(Claim => Claim.Type == "user_id").Value.ToString();
+            var order = _orderRepo.GetOpenOrderByUID(uid);
+            if (order != null)
+            {
+                var orderId = order.Id;
+                Cart cart = new Cart()
+                {
+                    CartItems = _orderItemRepo.GetAllItemsByOrderId(orderId),
+                    CartId = order.Id
+                };
+
+                return Ok(cart);
+            }
+            return NotFound();
+        }
 
         // GET api/<OrderController>/5
         [HttpGet("{orderId}")]
