@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { getAllPapers, deletePaper } from '../data/paperData';
 import HomeComponent from '../components/HomeComponent';
 import SearchPaper from '../components/SearchPaper';
+import {
+  Button
+} from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Home({user}) {
   const [papers, setPapers] = useState([]);
+  const navigate = useNavigate();
   const [filteredData, setFilteredData] = useState([]);
   
   useEffect(() => {
@@ -26,6 +32,20 @@ export default function Home({user}) {
   return (
     
     
+    <>
+      <div className="add-paper-btn">
+        {user ? (
+        <Button
+        className='btn btn-success'
+        onClick={() => navigate(`/PaperForm`)}
+      >
+        Add New Paper
+      </Button>
+      ) : (
+        ""
+        )}
+      </div>
+
     <div className="paper-view">
       <div className="search-filter">
         <SearchPaper
@@ -49,8 +69,9 @@ export default function Home({user}) {
             user={user}    
             handleDelete={handleDelete}
           />
-        ))}
+          ))}
       </>
     </div>
+          </>
   );
 }
