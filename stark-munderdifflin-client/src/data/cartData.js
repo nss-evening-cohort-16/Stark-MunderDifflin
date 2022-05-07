@@ -13,6 +13,7 @@ const getUserCart = async () => {
   const res = await axios.get(`${dbURL}/Order/Cart`, {
     headers: { Authorization: 'Bearer ' + token },
   });
+  console.log(res.data);
   return res.data;
 };
 

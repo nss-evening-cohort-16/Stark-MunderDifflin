@@ -9,14 +9,18 @@ export default function Cart() {
 
   useEffect(() => {
     getUserCart().then((cart) => {
-      setCartItems(cart.cartItems);
-      setCartId(cart.cartId);
+      if (cart.cartItems != null) {
+        setCartItems(cart.cartItems);
+        setCartId(cart.cartId);
+      }
     });
   }, []);
 
   const quantityChange = () => {
     getUserCart().then((items) => {
-      setCartItems(items);
+      setCartItems(items).then((cart) => {
+        console.log(cart);
+      });
       getTotal(cartItems);
     });
   };
