@@ -1,5 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardTitle,
@@ -9,9 +10,10 @@ import {
   CardImg,
 } from "reactstrap";
 
-export default function HomeComponent({ paper, user }) {
+export default function HomeComponent({ paper, handleDelete, user }) {
+ 
   const navigate = useNavigate();
-
+ 
   return (
     <div className='home-container'>
       <Card className='paper-card'>
@@ -33,13 +35,20 @@ export default function HomeComponent({ paper, user }) {
             ) : (
               <>
                 <Button
-                  className='edit-paper'
+                  className='btn btn-success'
                   onClick={() => navigate(`/Edit/${paper.id}`)}
                 >
                   Edit
                 </Button>
               </>
             )}
+                 <Button
+                className='btn btn-danger'
+                onClick={() => handleDelete(paper.id)}
+              >
+            Delete
+              </Button>
+
           </div>
         </CardBody>
       </Card>
