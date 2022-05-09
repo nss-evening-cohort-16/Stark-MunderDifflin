@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardTitle,
@@ -7,10 +7,25 @@ import {
   Button,
   CardSubtitle,
   CardImg,
-} from "reactstrap";
+} from 'reactstrap';
+import { addToCart } from '../data/cartData';
 
 export default function HomeComponent({ paper, user }) {
+  const [paperQty, setPaperQty] = useState(1);
   const navigate = useNavigate();
+
+  const handlepaperQty = (e) => {
+    setPaperQty(e.value);
+  };
+
+  const handleAdd = () => {
+    const item = {
+      PaperId: paper.id,
+      Quantity: paperQty,
+      orderId: 0,
+    };
+    addToCart(item);
+  };
 
   return (
     <div className='home-container'>
@@ -25,7 +40,19 @@ export default function HomeComponent({ paper, user }) {
         <CardBody>
           <CardSubtitle className='paper-color'>{paper.color}</CardSubtitle>
           <div className='paper-btn-container'>
-            <Button className='add-to-cart' type='button'>
+            QTY:{' '}
+            <input
+              id='paperQ'
+              className='paper-qty-input'
+              defaultValue={paperQty}
+              onChange={(e) => handlepaperQty(e)}
+            ></input>
+            <Button
+              id='paper-qty-input'
+              className='add-to-cart'
+              type='button'
+              onClick={() => handleAdd()}
+            >
               Add to Cart
             </Button>
             {!user ? (

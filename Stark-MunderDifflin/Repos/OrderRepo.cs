@@ -136,7 +136,7 @@ namespace Stark_MunderDifflin.Repos
             }
         }
 
-        public void AddOrder(Order order)
+        public int AddOrder(Order order)
         {
             using (SqlConnection conn = Connection)
             {
@@ -155,6 +155,7 @@ namespace Stark_MunderDifflin.Repos
                     int id = (int)cmd.ExecuteScalar();
 
                     order.Id = id;
+                    return id;
                 }
             }
         }
