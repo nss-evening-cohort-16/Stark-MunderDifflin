@@ -40,4 +40,11 @@ const updatePaper = (id, paperObj) =>
       .catch(reject);
   });
 
-export { getPaperById, getAllPapers, createPaper, updatePaper };
+  const deletePaper = (paperId) => new Promise((resolve, reject) => {
+    axios
+      .delete(`${dbUrl}/Paper/Delete/${paperId}`)
+      .then(() => getAllPapers().then(resolve))
+      .catch(reject);
+  });
+export { getPaperById, getAllPapers, createPaper, updatePaper, deletePaper };
+
