@@ -25,4 +25,25 @@ const updateOrderItemQuantity = async (orderItemId, quantity) => {
   });
 };
 
-export { getPaperItemsByOrder, updateOrderItemQuantity, getUserCart };
+const addToCart = async (paper) => {
+  console.log(paper);
+  const token = sessionStorage.getItem('idToken');
+  await axios.post(
+    `${dbURL}/Order/Add/`,
+    {
+      PaperId: paper.id,
+      Quantity: paper.quantity,
+      orderId: 0,
+    },
+    {
+      headers: { Authorization: 'Bearer ' + token },
+    }
+  );
+};
+
+export {
+  getPaperItemsByOrder,
+  updateOrderItemQuantity,
+  getUserCart,
+  addToCart,
+};

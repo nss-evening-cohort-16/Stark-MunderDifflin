@@ -85,6 +85,44 @@ namespace Stark_MunderDifflin.Controllers
 
 
         }
+        [Authorize]
+        [HttpPost("Add")]
+        public IActionResult AddToCart(OrderItem item)
+        {
+            var uid = User.FindFirst(Claim => Claim.Type == "user_id").Value.ToString();
+            var order = _orderRepo.GetOpenOrderByUID(uid);
+            if(order == null)
+            {
+                Order newOrder = new Order()
+                {
+                    CustomerId = uid,
+                    IsOpen = true,
+                };
+               int id = _orderRepo.AddOrder(newOrder);
+                OrderItem newItem = new OrderItem()
+                {
+                    PaperId = item.PaperId,
+                    OrderId = id,
+                    Quantity = item.Quantity,
+
+                };
+                _orderItemRepo.AddOrderItem(newItem);
+                return Ok(newItem);
+
+            }
+            else
+            {
+                OrderItem orderItem = new OrderItem()
+                {
+                    PaperId = item.PaperId,
+                    OrderId = order.Id,
+                    Quantity = item.Quantity,
+                };
+                _orderItemRepo.AddOrderItem(orderItem);
+                return Ok(orderItem);
+
+            }
+        }
 
         // POST api/<OrderController>
         [HttpPost("OrderItems")]
