@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import { addToCart } from '../data/cartData';
 
-export default function HomeComponent({ paper, user }) {
+export default function HomeComponent({ paper, user, handleDelete }) {
   const [paperQty, setPaperQty] = useState(1);
   const navigate = useNavigate();
 
@@ -60,13 +60,19 @@ export default function HomeComponent({ paper, user }) {
             ) : (
               <>
                 <Button
-                  className='edit-paper'
+                  className='btn btn-success'
                   onClick={() => navigate(`/Edit/${paper.id}`)}
                 >
                   Edit
                 </Button>
               </>
             )}
+            <Button
+              className='btn btn-danger'
+              onClick={() => handleDelete(paper.id)}
+            >
+              Delete
+            </Button>
           </div>
         </CardBody>
       </Card>
