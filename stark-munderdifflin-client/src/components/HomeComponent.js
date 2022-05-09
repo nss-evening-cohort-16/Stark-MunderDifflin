@@ -42,15 +42,15 @@ export default function HomeComponent({ paper, handleDelete, user }) {
                 </Button>
               </>
             )}
-            {user ? ( 
-            <Button
+            {!user ? ( 
+              ''
+              ) : (
+                <Button
                 className='btn btn-danger'
                 onClick={() => handleDelete(paper.id)}
               >
             Delete
               </Button>
-              ) : (
-                ""
               )}
                 
 
