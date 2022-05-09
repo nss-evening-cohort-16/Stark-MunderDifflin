@@ -42,12 +42,17 @@ export default function HomeComponent({ paper, handleDelete, user }) {
                 </Button>
               </>
             )}
-                 <Button
+            {user ? ( 
+            <Button
                 className='btn btn-danger'
                 onClick={() => handleDelete(paper.id)}
               >
             Delete
               </Button>
+              ) : (
+                ""
+              )}
+                
 
           </div>
         </CardBody>
