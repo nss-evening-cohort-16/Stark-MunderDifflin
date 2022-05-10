@@ -1,43 +1,39 @@
 
-// import React, { useState } from 'react'
-// import { Form, FormControl, Button } from 'react-bootstrap';
-// import databaseConfig from '../data/auth/apiKeys';
+import React, { useState } from 'react'
+import {
+    Button  
+  } from "reactstrap";
 
-// export default function SearchPaper({  func, placeholder, data }) {
-//     const [wordEntered, setWordEntered] = useState('');
-//     const filteredPaper = () => databaseConfig.filter((papers) => papers.name.toLowerCase().includes(wordEntered.toLowerCase()));
-//     const handleSearch = (e) => {
-//         const searchWord = e.target.value;
-//         setWordEntered(searchWord);
-//         if (searchWord === '') {
-//             func({});
-//         } else {
-//             func(filteredPaper);
-//         }
+export default function SearchPaper({  func, placeholder, data }) {
+    const [wordEntered, setWordEntered] = useState('');
+    const filteredData = () => data?.filter((papers) => papers.name.toLowerCase().includes(wordEntered.toLowerCase()) || papers.color.toLowerCase().includes(wordEntered.toLowerCase()));
+    
+    const handleSearch = (e) => {
+        const searchWord = e.target.value;
+        setWordEntered(searchWord);
 
-//     };
+        if (searchWord === '') {
+            func({});
+        } else {
+            func(filteredData);
+        }
+    };
 
-//     const clearInput = () => {
-//         func({});
-//         setWordEntered('');
-//     };
-//   return (
-//     <>
-     
-//         <div className="formStyle">
-//           <Form className="d-flex">
-//             <FormControl
-//               type="text"
-//               placeholder={placeholder}
-//               className="search-paper"
-//               onChange={handleSearch}
-//             />
-//             <Button
-//             >
-//               Search
-//             </Button>
-//           </Form>
-//         </div>  
-//     </>
-//   )
-// }
+  return (
+    <>  
+          <div className="searchInputs" >
+            <input
+              value = {wordEntered}
+              placeholder={placeholder}
+              onChange={handleSearch}
+            />
+            <Button type='button'
+            className = 'search-button'
+            >
+              Search
+            </Button>
+          </div>
+        
+    </>
+  )
+}
