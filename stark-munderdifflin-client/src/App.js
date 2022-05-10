@@ -33,10 +33,6 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    auth.currentUser.getIdTokenResult((token) => console.log(token));
-  }, [user]);
-
   return (
     <div className='App'>
       <AppNavbar user={user} />
