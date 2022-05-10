@@ -19,16 +19,9 @@ export default function SearchPaper({  func, placeholder, data }) {
         }
     };
 
-    // const clearInput = () => {
-    //     func({});
-    //     setWordEntered('');
-    // };
-
   return (
-    <>
-     
-        <div className="search">
-          <div className="searchInputs">
+    <>  
+          <div className="searchInputs" >
             <input
               value = {wordEntered}
               placeholder={placeholder}
@@ -40,7 +33,7 @@ export default function SearchPaper({  func, placeholder, data }) {
               Search
             </Button>
           </div>
-        </div>  
+        
     </>
   )
 }

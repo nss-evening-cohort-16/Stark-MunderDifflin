@@ -49,7 +49,7 @@ export default function Home({user}) {
     <div className="paper-view">
       <div className="search-filter">
         <SearchPaper
-          placeholder="Search by Name"
+          placeholder="Search by Name Or Color"
           func={setFilteredData}
           data={papers}
         />
