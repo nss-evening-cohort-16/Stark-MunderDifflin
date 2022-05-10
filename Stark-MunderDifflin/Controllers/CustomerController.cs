@@ -20,13 +20,6 @@ namespace Stark_MunderDifflin.Controllers
             _customerRepo = customerRepository;
         }
 
-        // GET: api/<CustomerController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET api/<CustomerController>/Email/5
         [HttpGet("Email/{email}")]
         public IActionResult GetCustomerByEmail(string email)
@@ -59,7 +52,7 @@ namespace Stark_MunderDifflin.Controllers
         public async Task<IActionResult> PostAsync([FromHeader] string idToken)
         {
             FirebaseToken decoded = await FirebaseAuth.DefaultInstance.VerifyIdTokenAsync(idToken);
-            //var token = User.FindFirst(Claim => Claim.Type == "user_id");
+             var token = User.FindFirst(Claim => Claim.Type == "user_id");
             var uid = decoded.Uid;
             bool customerExists = _customerRepo.CustomerExists(uid);
             if (!customerExists)
