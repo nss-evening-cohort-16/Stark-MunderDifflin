@@ -7,6 +7,6 @@ const signInUser = async () => {
 };
 const signOutUser = () =>
   new Promise((resolve, reject) => {
-    getAuth().signOut().then(resolve).catch(reject);
+    getAuth().signOut().then(resolve).catch(reject);    
   });
 export { signInUser, signOutUser };
