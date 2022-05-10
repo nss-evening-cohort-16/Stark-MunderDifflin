@@ -21,6 +21,7 @@ function App() {
         userExistsInDB(authed.accessToken);
       } else if (user || user === null) {
         setUser(false);
+        sessionStorage.removeItem('idToken', authed.accessToken);
       }
     });
   }, []);

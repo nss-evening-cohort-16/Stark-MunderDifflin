@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import CartItem from '../components/CartItem';
-import { getPaperItemsByOrder } from '../data/cartData';
+import { getUserCart } from '../data/cartData';
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  const [cartId, setCartId] = useState(null);
   const [total, setTotal] = useState();
 
   useEffect(() => {
-    getPaperItemsByOrder(1).then((items) => {
-      setCartItems(items);
+    getUserCart().then((cart) => {
+      if (cart.cartItems != null) {
+        setCartItems(cart.cartItems);
+        setCartId(cart.cartId);
+      }
     });
   }, []);
 
   const quantityChange = () => {
-    getPaperItemsByOrder(1).then((items) => {
-      setCartItems(items);
+    getUserCart().then((items) => {
+      setCartItems(items).then((cart) => {
+        console.log(cart);
+      });
       getTotal(cartItems);
     });
   };
@@ -35,13 +41,23 @@ export default function Cart() {
 
   return (
     <div className='cart-container'>
-      <div className='cart-items-container'>
-        {cartItems.map((item) => (
-          <CartItem key={item.id} item={item} quantityChange={quantityChange} />
-        ))}
-      </div>
-      <button className='btn btn-success cart-btn'>Submit</button>
-      Total: {total}
+      {cartItems.length === 0 ? (
+        <h4>Cart is Empty</h4>
+      ) : (
+        <>
+          <div className='cart-items-container'>
+            {cartItems.map((item) => (
+              <CartItem
+                key={item.id}
+                item={item}
+                quantityChange={quantityChange}
+              />
+            ))}
+          </div>
+          <button className='btn btn-success cart-btn'>Submit</button>
+          Total: {total}
+        </>
+      )}
     </div>
   );
 }
