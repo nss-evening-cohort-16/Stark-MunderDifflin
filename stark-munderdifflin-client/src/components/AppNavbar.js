@@ -40,11 +40,11 @@ export default function AppNavbar({ user }) {
                 <span className='nav-span'>Cart</span>
               </NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink href='/search'>
                 <span className='nav-span'>Search</span>
               </NavLink>
-            </NavItem>
+            </NavItem> */}
             {user ? (
               <>
                 <UncontrolledDropdown nav inNavbar className='user-drop'>

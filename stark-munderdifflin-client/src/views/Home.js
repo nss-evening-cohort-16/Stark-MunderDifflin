@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPapers, deletePaper } from '../data/paperData';
 import HomeComponent from '../components/HomeComponent';
-import { useNavigate } from 'react-router-dom';
+import SearchPaper from '../components/SearchPaper';
 import {
-  Button,
-} from "reactstrap";
+  Button
+} from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Home({user}) {
   const [papers, setPapers] = useState([]);
   const navigate = useNavigate();
+  const [filteredData, setFilteredData] = useState([]);
   
   useEffect(() => {
     let isMounted = true;
@@ -27,6 +30,8 @@ export default function Home({user}) {
         }
 
   return (
+    
+    
     <>
       <div className="add-paper-btn">
         {user ? (
@@ -42,14 +47,27 @@ export default function Home({user}) {
       </div>
 
     <div className="paper-view">
+      <div className="search-filter">
+        <SearchPaper
+          placeholder="Search by Name Or Color"
+          func={setFilteredData}
+          data={papers}
+        />
+      </div>
       <>
-        {papers.map((paper) => (
+      
+        { filteredData.length? filteredData.map((paper) => (
+          <HomeComponent
+          key={paper.id} 
+          paper={paper}
+          setPapers={setPapers} />
+        )) : 
+          papers.map((paper) => (
           <HomeComponent 
           key={paper.id}         
-          paper={paper}
-          user={user}
-          
-          handleDelete={handleDelete}
+            paper={paper}
+            user={user}    
+            handleDelete={handleDelete}
           />
           ))}
       </>
