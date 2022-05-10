@@ -73,7 +73,6 @@ namespace Stark_MunderDifflin.Repos
                 {
                     cmd.CommandText = @"
                         INSERT INTO OrderItem (PaperId, OrderId, Quantity)
-                        OUTPUT INSERTED.ID
                         VALUES (@paperId, @orderId, @quantity);
                     ";
 
@@ -82,7 +81,7 @@ namespace Stark_MunderDifflin.Repos
                     cmd.Parameters.AddWithValue("@quantity", item.Quantity);
 
 
-                    int id = (int)cmd.ExecuteScalar();
+                    int id = (int)cmd.ExecuteNonQuery();
 
                     item.Id = id;
                 }
@@ -165,5 +164,6 @@ namespace Stark_MunderDifflin.Repos
                 }
             }
         }
+
     }
 }

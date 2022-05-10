@@ -19,6 +19,7 @@ namespace Stark_MunderDifflin.Controllers
         }
 
         // GET: api/<PaperController>
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {

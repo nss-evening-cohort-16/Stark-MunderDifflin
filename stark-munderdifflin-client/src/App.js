@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Routes from './routes/index';
 import AppNavbar from './components/AppNavbar';
-<<<<<<< HEAD
-import databaseConfig from './data/auth/apiKeys';
-=======
 import auth from './data/auth/firebaseConfig';
 import userExistsInDB from './data/userData';
->>>>>>> d1ac635db9687eb7e23c568442b595f00ed4b3ff
 
 function App() {
   const [user, setUser] = useState(null);
