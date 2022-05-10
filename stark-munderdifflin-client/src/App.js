@@ -3,9 +3,11 @@ import Routes from './routes/index';
 import AppNavbar from './components/AppNavbar';
 import auth from './data/auth/firebaseConfig';
 import userExistsInDB from './data/userData';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function App() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     auth.onAuthStateChanged((authed) => {
@@ -21,6 +23,8 @@ function App() {
         userExistsInDB(authed.accessToken);
       } else if (user || user === null) {
         setUser(false);
+        sessionStorage.removeItem('idToken');
+        navigate('/')
       }
     });
   }, []);
