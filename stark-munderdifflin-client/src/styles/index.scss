@@ -56,6 +56,7 @@
   }
 }
 
+
 //Home View
 .home-container {
   display: flex;
@@ -65,7 +66,7 @@
   border-radius: 10px;
   align-items: center;
   display: inline-block;
-
+ 
   .paper-card {
     height: 400px;
     width: 20rem;
@@ -131,6 +132,17 @@
   }
 }
 
+.searchInputs {
+  float: right;
+ margin: .2rem;
+ 
+ .search-button {
+ background-color: rgb(26, 98, 110);
+ color: white;
+ border-radius: 6px 6px 6px;
+ margin-left: 0.5rem;
+ }
+}
 //Navbar
 .nav-span {
   color: white;

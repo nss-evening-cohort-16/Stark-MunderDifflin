@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { getPaperById } from '../data/paperData';
+import { getPaperById, deletePaper } from '../data/paperData';
 import { useNavigate } from "react-router-dom";
+
 
 import {
   Card,
@@ -24,6 +25,11 @@ export default function PaperDetails({user}) {
     return () => {
     };
   }, []); 
+
+  const handleDelete = (paperId) => {
+    deletePaper(paperId) 
+    navigate('/')
+    };
 
   return (
     <div className='paper-details-container'>
@@ -51,6 +57,17 @@ export default function PaperDetails({user}) {
                 </Button>
               </>
             )}
+{!user ? ( 
+              ''
+              ) : (
+                <Button
+                className='btn btn-danger'
+                onClick={() => handleDelete(paperDetail.id)}
+              >
+            Delete
+              </Button>
+              )}
+            
       </Card>
       
     </div>
