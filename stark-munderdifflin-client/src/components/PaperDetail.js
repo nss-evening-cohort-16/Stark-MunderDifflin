@@ -45,7 +45,7 @@ export default function PaperDetails({user}) {
           <CardSubtitle className='paper-details-specs'>Paper Size: {paperDetail.length}" x {paperDetail.width}"</CardSubtitle>
           <CardSubtitle className='paper-details-weight'>Paper weight: {paperDetail.weight} lbs</CardSubtitle>
         </CardBody>  
-        {!user ? (
+        {!user?.isAdmin ? (
               ''
             ) : (
               <>
@@ -57,16 +57,16 @@ export default function PaperDetails({user}) {
                 </Button>
               </>
             )}
-{!user ? ( 
+        {!user?.isAdmin ? ( 
               ''
-              ) : (
+            ) : (
                 <Button
-                className='btn btn-danger'
-                onClick={() => handleDelete(paperDetail.id)}
-              >
-            Delete
+                  className='btn btn-danger'
+                  onClick={() => handleDelete(paperDetail.id)}
+                >
+                Delete
               </Button>
-              )}
+            )}
             
       </Card>
       
