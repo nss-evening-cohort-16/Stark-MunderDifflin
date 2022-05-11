@@ -81,7 +81,24 @@
     position: relative;
     flex: row;
     box-shadow: 4px 4px 8px hsla(0, 0%, 0%, 0.471);
+    .paper-qty-input{
+      vertical-align: middle;
+    }
+    .paper-btn-container {
+      width: 100%;
+      min-width: auto;
+    }
+    .paper-color {
+     text-align: center;
+     font-weight: bolder;
      
+    }
+    .paper-name{
+font-weight: bold;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+color:rgb(26, 98, 110);
+    }
+    
 
     .add-to-cart {
       font-weight: 700;
@@ -100,6 +117,9 @@
       color: black;
       border-radius: 10px;
       box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
+      height: inherit;
+      
+     
     
     
     }
@@ -110,16 +130,19 @@
       margin-left: 8rem;
       border-color: red;
       box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
+   
      
     
     
     }
+    
     .paper-image {
       width: 100%;
       max-width: 300px;
       min-height: 200px;
       display: block;
       object-fit: cover;
+    
     }
     btn btn-success {
       margin-left: auto;
@@ -135,7 +158,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    min-height:auto;
 
     .paper-details-card {
       border: 2px, solid, gray;
