@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardTitle,
@@ -7,11 +7,16 @@ import {
   Button,
   CardSubtitle,
   CardImg,
-} from 'reactstrap';
-import { addToCart } from '../data/cartData';
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
+import { addToCart } from "../data/cartData";
 
 export default function HomeComponent({ paper, user, handleDelete }) {
   const [paperQty, setPaperQty] = useState(1);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const handlepaperQty = (e) => {
@@ -27,6 +32,10 @@ export default function HomeComponent({ paper, user, handleDelete }) {
     addToCart(item);
   };
 
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+
   return (
     <div className='home-container'>
       <Card className='paper-card'>
@@ -40,23 +49,49 @@ export default function HomeComponent({ paper, user, handleDelete }) {
         <CardBody>
           <CardSubtitle className='paper-color'>{paper.color}</CardSubtitle>
           <div className='paper-btn-container'>
-            QTY:{' '}
+            QTY:{" "}
             <input
               id='paperQ'
               className='paper-qty-input'
               defaultValue={paperQty}
               onChange={(e) => handlepaperQty(e)}
             ></input>
-            <Button
-              id='paper-qty-input'
-              className='add-to-cart'
-              type='button'
-              onClick={() => handleAdd()}
-            >
-              Add to Cart
-            </Button>
+            {!user ? (
+              <>
+                <div>
+                  <Button className='add-to-cart' onClick={() => handleShowModal()}>
+                  Add to Cart
+                  </Button>
+                  
+                  <Modal isOpen={showModal}
+                  backdrop='static'
+                  keyboard={false}
+                  >                   
+                    <ModalHeader>
+                      User Not Logged In
+                    </ModalHeader>
+                    <ModalBody>
+                      Please Log In To Add to Cart
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button onClick={handleCloseModal}>Cancel</Button>
+                    </ModalFooter>
+                  </Modal>
+                </div>
+              </>
+
+            ) : (
+              <Button
+                id='paper-qty-input'
+                className='add-to-cart'
+                type='button'
+                onClick={() => handleAdd()}
+              >
+                Add to Cart
+              </Button>
+            )}
             {!user?.isAdmin ? (
-              ''
+              ""
             ) : (
               <>
                 <Button
@@ -67,23 +102,19 @@ export default function HomeComponent({ paper, user, handleDelete }) {
                 </Button>
               </>
             )}
-            {!user?.isAdmin ? ( 
-              ''
-              ) : (
-                <Button
+            {!user?.isAdmin ? (
+              ""
+            ) : (
+              <Button
                 className='delete-paper'
                 onClick={() => handleDelete(paper.id)}
               >
-            Delete
+                Delete
               </Button>
-              )}
-                
-
+            )}
           </div>
         </CardBody>
       </Card>
     </div>
   );
 }
-
-// Home.propTypes = {}
