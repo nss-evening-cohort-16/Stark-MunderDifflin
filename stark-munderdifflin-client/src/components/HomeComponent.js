@@ -15,7 +15,7 @@ export default function HomeComponent({ paper, user, handleDelete }) {
   const navigate = useNavigate();
 
   const handlepaperQty = (e) => {
-    setPaperQty(e.value);
+    setPaperQty(Number(e.target.value));
   };
 
   const handleAdd = () => {
@@ -43,6 +43,7 @@ export default function HomeComponent({ paper, user, handleDelete }) {
             QTY:{' '}
             <input
               id='paperQ'
+              type='number'
               className='paper-qty-input'
               defaultValue={paperQty}
               onChange={(e) => handlepaperQty(e)}

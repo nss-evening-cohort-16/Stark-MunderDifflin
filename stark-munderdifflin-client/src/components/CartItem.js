@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { updateOrderItemQuantity } from '../data/cartData';
+import { updateOrderItemQuantity, deleteCartItem } from '../data/cartData';
 import updateIcon from '../assets/updateIcon.ico';
+import deleteIcon from '../assets/deleteIcon.ico';
 
 export default function CartItem({ item, quantityChange }) {
   const [itemQty, setItemQuantity] = useState(item.quantity);
 
   const handleQuantityChange = (e) => {
-    setItemQuantity(e.target.value);
+    setItemQuantity(Number(e.target.value));
   };
 
   const updateQuantity = async () => {
-    await updateOrderItemQuantity(item.id, itemQty);
+    console.log(itemQty);
+    if (itemQty === 0) deleteItem();
+    else await updateOrderItemQuantity(item.id, itemQty);
+    quantityChange();
+  };
+
+  const deleteItem = async () => {
+    await deleteCartItem(item.id);
     quantityChange();
   };
 
@@ -36,16 +44,15 @@ export default function CartItem({ item, quantityChange }) {
                 Oty:
                 <input
                   className='cart-qty-input'
-                  type='text'
+                  type='number'
                   value={itemQty}
                   onChange={handleQuantityChange}
                 ></input>
                 <button className='btn btn-success' onClick={updateQuantity}>
-                  <img
-                    className='cart-update-btn-img'
-                    src={updateIcon}
-                    alt='update'
-                  />
+                  <img className='cart-btn-img' src={updateIcon} alt='update' />
+                </button>
+                <button className='btn btn-danger' onClick={deleteItem}>
+                  <img className='cart-btn-img' src={deleteIcon} alt='delete' />
                 </button>
               </div>
             </td>

@@ -12,13 +12,15 @@ const dbURL = databaseConfig.databaseURL;
  */
 const getUserCart = async () => {
   const token = sessionStorage.getItem('idToken');
-  const res = await axios.get(`${dbURL}/Order/Cart`, {
-    headers: { Authorization: 'Bearer ' + token },
-  });
-  return res.data;
+  try {
+    const res = await axios.get(`${dbURL}/Order/Cart`, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
-
-//const closeCart = async () => {};
 
 /**
  * Updates quantity of a cart item.
@@ -28,9 +30,20 @@ const getUserCart = async () => {
  * @return {void}
  */
 const updateOrderItemQuantity = async (orderItemId, quantity) => {
-  await axios.put(`${dbURL}/Order/OrderItems/${orderItemId}`, {
-    Quantity: quantity,
-  });
+  const token = sessionStorage.getItem('idToken');
+  try {
+    await axios.put(
+      `${dbURL}/Order/OrderItems/${orderItemId}`,
+      {
+        Quantity: quantity,
+      },
+      {
+        headers: { Authorization: 'Bearer ' + token },
+      }
+    );
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -41,18 +54,53 @@ const updateOrderItemQuantity = async (orderItemId, quantity) => {
  */
 //orderId is updated with sending user's current open orderId
 const addToCart = async (paper) => {
-  console.log(paper);
   const token = sessionStorage.getItem('idToken');
-  console.log(paper.paperId);
   const paperToAdd = {
-    id: 0,
-    OrderId: 0,
-    PaperId: paper.id,
+    PaperId: paper.paperId,
     Quantity: paper.quantity,
   };
-  await axios.post(`${dbURL}/Order/Add`, paperToAdd, {
-    headers: { Authorization: 'Bearer ' + token },
-  });
+
+  try {
+    await axios.post(`${dbURL}/Order/Add`, paperToAdd, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export { updateOrderItemQuantity, getUserCart, addToCart };
+/**
+ * Deletes an item from user's current cart.
+ * @async DELETE
+ * @param {int} id - order item id
+ * @return {void}
+ */
+const deleteCartItem = async (id) => {
+  const token = sessionStorage.getItem('idToken');
+  try {
+    await axios.delete(`${dbURL}/Order/DeleteCartItem/${id}`, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const closeOrder = async (cartId) => {
+  const token = sessionStorage.getItem('idToken');
+  try {
+    await axios.get(`${dbURL}/Order/Close/${cartId}`, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export {
+  updateOrderItemQuantity,
+  getUserCart,
+  addToCart,
+  deleteCartItem,
+  closeOrder,
+};
