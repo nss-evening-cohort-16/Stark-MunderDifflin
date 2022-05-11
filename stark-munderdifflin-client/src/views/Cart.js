@@ -17,10 +17,8 @@ export default function Cart() {
   }, []);
 
   const quantityChange = () => {
-    getUserCart().then((items) => {
-      setCartItems(items).then((cart) => {
-        console.log(cart);
-      });
+    getUserCart().then((cart) => {
+      setCartItems(cart.cartItems);
       getTotal(cartItems);
     });
   };

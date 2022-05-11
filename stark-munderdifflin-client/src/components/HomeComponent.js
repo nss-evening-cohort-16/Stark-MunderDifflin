@@ -20,8 +20,8 @@ export default function HomeComponent({ paper, user, handleDelete }) {
 
   const handleAdd = () => {
     const item = {
-      PaperId: paper.id,
-      Quantity: paperQty,
+      paperId: paper.id,
+      quantity: paperQty,
       orderId: 0,
     };
     addToCart(item);
@@ -67,18 +67,16 @@ export default function HomeComponent({ paper, user, handleDelete }) {
                 </Button>
               </>
             )}
-            {!user ? ( 
+            {!user ? (
               ''
-              ) : (
-                <Button
+            ) : (
+              <Button
                 className='btn btn-danger'
                 onClick={() => handleDelete(paper.id)}
               >
-            Delete
+                Delete
               </Button>
-              )}
-                
-
+            )}
           </div>
         </CardBody>
       </Card>

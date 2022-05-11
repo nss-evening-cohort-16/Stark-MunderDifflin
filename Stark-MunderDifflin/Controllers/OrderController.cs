@@ -87,7 +87,7 @@ namespace Stark_MunderDifflin.Controllers
         }
         [Authorize]
         [HttpPost("Add")]
-        public IActionResult AddToCart(OrderItem item)
+        public IActionResult AddToCart([FromBody] OrderItem item)
         {
             var uid = User.FindFirst(Claim => Claim.Type == "user_id").Value.ToString();
             var order = _orderRepo.GetOpenOrderByUID(uid);
