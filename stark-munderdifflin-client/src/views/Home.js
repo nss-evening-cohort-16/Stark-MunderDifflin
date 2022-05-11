@@ -34,7 +34,7 @@ export default function Home({user}) {
     
     <>
       <div className="add-paper-btn">
-        {user ? (
+        {user?.isAdmin ? (
         <Button
         className='btn btn-success'
         onClick={() => navigate(`/PaperForm`)}
