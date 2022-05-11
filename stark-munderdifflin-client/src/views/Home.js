@@ -30,11 +30,10 @@ export default function Home({user}) {
         }
 
   return (
-    
-    
     <>
-      <div className='add-paper-container'>
-        {user ? (
+      
+      <div className="add-paper-container">
+        {user?.isAdmin ? (
         <Button
         className='add-paper-btn'
         onClick={() => navigate(`/PaperForm`)}
@@ -72,6 +71,8 @@ export default function Home({user}) {
           ))}
       </>
     </div>
+    
           </>
+          
   );
 }
