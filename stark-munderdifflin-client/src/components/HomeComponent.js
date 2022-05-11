@@ -55,7 +55,7 @@ export default function HomeComponent({ paper, user, handleDelete }) {
             >
               Add to Cart
             </Button>
-            {!user ? (
+            {!user?.isAdmin ? (
               ''
             ) : (
               <>
@@ -67,7 +67,7 @@ export default function HomeComponent({ paper, user, handleDelete }) {
                 </Button>
               </>
             )}
-            {!user ? (
+            {!user?.isAdmin ? (
               ''
             ) : (
               <Button
