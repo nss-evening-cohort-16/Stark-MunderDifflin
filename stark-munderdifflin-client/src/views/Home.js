@@ -33,10 +33,10 @@ export default function Home({user}) {
     
     
     <>
-      <div className="add-paper-btn">
+      <div className='add-paper-container'>
         {user ? (
         <Button
-        className='btn btn-success'
+        className='add-paper-btn'
         onClick={() => navigate(`/PaperForm`)}
       >
         Add New Paper
@@ -46,8 +46,8 @@ export default function Home({user}) {
         )}
       </div>
 
-    <div className="paper-view">
-      <div className="search-filter">
+    <div className='paper-view'>
+      <div className='search-filter'>
         <SearchPaper
           placeholder="Search by Name Or Color"
           func={setFilteredData}
