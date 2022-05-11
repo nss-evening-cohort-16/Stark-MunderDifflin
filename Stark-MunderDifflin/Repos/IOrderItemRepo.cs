@@ -6,7 +6,7 @@ namespace Stark_MunderDifflin.Repos
     {
         public List<PaperOrderItem>? GetAllItemsByOrderId(int id);
         public void AddOrderItem(OrderItem item);
-        public void DeleteOrderItem(int orderId, int paperId);
+        public void DeleteOrderItem(int orderItemId);
         public void UpdateOrderItemQuantity(int id, int quantity);
         public OrderItem? OrderItemExists(int paperId, int orderId);
     }

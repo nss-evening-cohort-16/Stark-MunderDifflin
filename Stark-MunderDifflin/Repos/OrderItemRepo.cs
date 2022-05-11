@@ -88,7 +88,7 @@ namespace Stark_MunderDifflin.Repos
             }
         }
 
-        public void DeleteOrderItem(int orderId, int paperId)
+        public void DeleteOrderItem(int orderItemId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -99,10 +99,9 @@ namespace Stark_MunderDifflin.Repos
                     cmd.CommandText = @"
                         DELETE
                         FROM OrderItem
-                        WHERE OrderId = @oId AND  PaperId = @pId";
+                        WHERE Id = @id";
 
-                    cmd.Parameters.AddWithValue("@oId", orderId);
-                    cmd.Parameters.AddWithValue("@pId", paperId);
+                    cmd.Parameters.AddWithValue("@id", orderItemId);
 
                     cmd.ExecuteNonQuery();
                 }

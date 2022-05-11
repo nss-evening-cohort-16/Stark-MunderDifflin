@@ -2,17 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { getAllPapers, deletePaper } from '../data/paperData';
 import HomeComponent from '../components/HomeComponent';
 import SearchPaper from '../components/SearchPaper';
-import {
-  Button
-} from 'reactstrap';
+import { Button } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 
-
-export default function Home({user}) {
+export default function Home({ user }) {
   const [papers, setPapers] = useState([]);
   const navigate = useNavigate();
   const [filteredData, setFilteredData] = useState([]);
-  
+
   useEffect(() => {
     let isMounted = true;
     getAllPapers().then((paperArray) => {
@@ -24,55 +21,53 @@ export default function Home({user}) {
   }, []);
 
   const handleDelete = async (paperId) => {
-    await deletePaper(paperId) 
+    await deletePaper(paperId);
     getAllPapers().then((paperArray) => setPapers(paperArray));
-    
-        }
+  };
 
   return (
     <>
-      
-      <div className="add-paper-container">
+      <div className='add-paper-btn'>
         {user?.isAdmin ? (
-        <Button
-        className='add-paper-btn'
-        onClick={() => navigate(`/PaperForm`)}
-      >
-        Add New Paper
-      </Button>
-      ) : (
-        ""
+          <Button
+            className='btn btn-success'
+            onClick={() => navigate(`/PaperForm`)}
+          >
+            Add New Paper
+          </Button>
+        ) : (
+          ''
         )}
       </div>
 
-    <div className='paper-view'>
-      <div className='search-filter'>
-        <SearchPaper
-          placeholder="Search by Name Or Color"
-          func={setFilteredData}
-          data={papers}
-        />
-      </div>
-      <>
-      
-        { filteredData.length? filteredData.map((paper) => (
-          <HomeComponent
-          key={paper.id} 
-          paper={paper}
-          setPapers={setPapers} />
-        )) : 
-          papers.map((paper) => (
-          <HomeComponent 
-          key={paper.id}         
-            paper={paper}
-            user={user}    
-            handleDelete={handleDelete}
+      <div className='paper-view'>
+        <div className='search-filter'>
+          <SearchPaper
+            placeholder='Search by Name Or Color'
+            func={setFilteredData}
+            data={papers}
           />
-          ))}
-      </>
-    </div>
-    
-          </>
-          
+        </div>
+        <>
+          {filteredData.length
+            ? filteredData.map((paper) => (
+                <HomeComponent
+                  key={paper.id}
+                  paper={paper}
+                  user={user}
+                  setPapers={setPapers}
+                />
+              ))
+            : papers.map((paper) => (
+                <HomeComponent
+                  key={paper.id}
+                  paper={paper}
+                  user={user}
+                  handleDelete={handleDelete}
+                />
+              ))}
+        </>
+      </div>
+    </>
   );
 }

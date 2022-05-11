@@ -22,14 +22,6 @@ namespace Stark_MunderDifflin.Controllers
             _orderItemRepo = orderItemRepo;
         }
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            List<Order> orders = _orderRepo.GetAllOrders();
-            if (orders == null) return NotFound();
-            return Ok(orders);
-        }
-
         // GET: api/<OrderController>/Cart
         [Authorize]
         [HttpGet("Cart")]
@@ -48,18 +40,28 @@ namespace Stark_MunderDifflin.Controllers
 
                 return Ok(cart);
             }
-            return Ok(null);
+            else
+            {
+                int newOrderId = _orderRepo.AddNewOrder(uid);
+                Cart cart = new Cart()
+                {
+                    CartItems = new List<PaperOrderItem>(),
+                    CartId = newOrderId
+                };
+
+                return Ok(cart);
+            }
         }
 
         // GET api/<OrderController>/5
-        [HttpGet("{orderId}")]
-        public IActionResult Get(int orderId)
-        {
-            List<PaperOrderItem>? items = _orderItemRepo.GetAllItemsByOrderId(orderId);
-            if (items == null) return NotFound();
-            return Ok(items);
+        //[HttpGet("{orderId}")]
+        //public IActionResult Get(int orderId)
+        //{
+        //    List<PaperOrderItem>? items = _orderItemRepo.GetAllItemsByOrderId(orderId);
+        //    if (items == null) return NotFound();
+        //    return Ok(items);
 
-        }
+        //}
 
         [HttpGet("Customer/{uid}")]
         public IActionResult GetOrderByUID(string uid)
@@ -69,88 +71,41 @@ namespace Stark_MunderDifflin.Controllers
             return Ok(customerOrders);
         }
 
-        // POST api/<OrderController>
-        [HttpPost]
-        public IActionResult PostOrder([FromBody] Order newOrder)
-        {
-            if (newOrder == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                _orderRepo.AddOrder(newOrder);
-                return Ok(newOrder);
-            }
-
-
-        }
         [Authorize]
         [HttpPost("Add")]
-        public IActionResult AddToCart(OrderItem item)
+        public IActionResult AddToCart([FromBody] OrderItem item)
         {
             var uid = User.FindFirst(Claim => Claim.Type == "user_id").Value.ToString();
             var order = _orderRepo.GetOpenOrderByUID(uid);
             if(order == null)
             {
-                Order newOrder = new Order()
-                {
-                    CustomerId = uid,
-                    IsOpen = true,
-                };
-               int id = _orderRepo.AddOrder(newOrder);
-                OrderItem newItem = new OrderItem()
-                {
-                    PaperId = item.PaperId,
-                    OrderId = id,
-                    Quantity = item.Quantity,
-
-                };
-                _orderItemRepo.AddOrderItem(newItem);
-                return Ok(newItem);
+               int id = _orderRepo.AddNewOrder(uid);
+                item.OrderId = id;
+                _orderItemRepo.AddOrderItem(item);
+                return Ok(item);
 
             }
             else
             {
-                OrderItem orderItem = new OrderItem()
+                item.OrderId = order.Id;
+                OrderItem? existingItem = _orderItemRepo.OrderItemExists(item.PaperId, item.OrderId);
+                if (existingItem == null)
                 {
-                    PaperId = item.PaperId,
-                    OrderId = order.Id,
-                    Quantity = item.Quantity,
-                };
-                _orderItemRepo.AddOrderItem(orderItem);
-                return Ok(orderItem);
+                _orderItemRepo.AddOrderItem(item);
+                return Ok(item);
+                }
+                else
+                {
+                    int newQuantity = existingItem.Quantity + item.Quantity;
+                    _orderItemRepo.UpdateOrderItemQuantity(existingItem.Id, newQuantity);
+                    return Ok(item);
+                }
 
             }
         }
-
-        // POST api/<OrderController>
-        [HttpPost("OrderItems")]
-        public IActionResult PostOrderItem([FromBody] OrderItem newOrderItem)
-        {
-            if (newOrderItem == null)
-            {
-                return NotFound();
-            }
-
-            OrderItem? item = _orderItemRepo.OrderItemExists(newOrderItem.PaperId, newOrderItem.OrderId);
-
-            if (item != null)
-            {
-                _orderItemRepo.UpdateOrderItemQuantity(item.Id, (item.Quantity +1));
-                return Ok("Updated Existing Item Quantity +1");
-            } 
-            else
-            {
-                _orderItemRepo.AddOrderItem(newOrderItem);
-                return Ok(newOrderItem);    
-            }
-            
-
-        }
-
 
         // PUT api/<OrderController>/5
+        [Authorize]
         [HttpPut("OrderItems/{id}")]
         public IActionResult UpdateQuantity(int id, [FromBody] PaperOrderItem item)
         {
@@ -164,9 +119,9 @@ namespace Stark_MunderDifflin.Controllers
                 return BadRequest();
             }
         }
-
-        // PUT api/<OrderController>/5
-        [HttpPut("Close/{id}")]
+        [Authorize]
+        // GET api/<OrderController>/5
+        [HttpGet("Close/{id}")]
         public IActionResult CloseOrder(int id)
         {
             try
@@ -181,17 +136,11 @@ namespace Stark_MunderDifflin.Controllers
         }
 
         // DELETE api/<OrderController>/5
-        [HttpDelete("{orderId}")]
-        public void Delete(int orderId)
+        [Authorize]
+        [HttpDelete("DeleteCartItem/{id}")]
+        public void Delete(int id)
         {
-            _orderRepo.DeleteOrder(orderId);
-        }
-        
-        // DELETE api/<OrderController>/5/1
-        [HttpDelete("{orderId}/(paperId")]
-        public void DeleteItem(int orderId, int paperId)
-        {
-            _orderItemRepo.DeleteOrderItem(orderId, paperId);
+            _orderItemRepo.DeleteOrderItem(id);
         }
     }
 }
