@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import CartItem from '../components/CartItem';
-import { getUserCart } from '../data/cartData';
+import { getUserCart, closeOrder } from '../data/cartData';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [cartId, setCartId] = useState(null);
   const [total, setTotal] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUserCart().then((cart) => {
@@ -16,18 +19,16 @@ export default function Cart() {
     });
   }, []);
 
-  const quantityChange = () => {
-    getUserCart().then((items) => {
-      setCartItems(items).then((cart) => {
-        console.log(cart);
-      });
-      getTotal(cartItems);
-    });
-  };
-
   useEffect(() => {
     getTotal(cartItems);
   }, [cartItems]);
+
+  const quantityChange = () => {
+    getUserCart().then((cart) => {
+      setCartItems(cart.cartItems);
+      getTotal(cartItems);
+    });
+  };
 
   const getTotal = (cartItems) => {
     let total = 0;
@@ -37,6 +38,11 @@ export default function Cart() {
     });
     total = Math.ceil(total * 100) / 100;
     setTotal(total);
+  };
+
+  const submitCart = async () => {
+    await closeOrder(cartId);
+    navigate('/');
   };
 
   return (
@@ -54,7 +60,9 @@ export default function Cart() {
               />
             ))}
           </div>
-          <button className='btn btn-success cart-btn'>Submit</button>
+          <button className='btn btn-success cart-btn' onClick={submitCart}>
+            Submit
+          </button>
           Total: {total}
         </>
       )}

@@ -136,7 +136,7 @@ namespace Stark_MunderDifflin.Repos
             }
         }
 
-        public int AddOrder(Order order)
+        public int AddNewOrder(string customerId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -149,12 +149,11 @@ namespace Stark_MunderDifflin.Repos
                                         OUTPUT INSERTED.ID
                                         VALUES (@customerId, @isOpen)
                                         ";
-                    cmd.Parameters.AddWithValue("@customerId", order.CustomerId);
+                    cmd.Parameters.AddWithValue("@customerId", customerId);
                     cmd.Parameters.AddWithValue("@isOpen", true);
 
                     int id = (int)cmd.ExecuteScalar();
 
-                    order.Id = id;
                     return id;
                 }
             }
