@@ -90,7 +90,7 @@ export default function HomeComponent({ paper, user, handleDelete }) {
             ) : (
               <>
                 <Button
-                  className='btn btn-success'
+                  className='edit-paper'
                   onClick={() => navigate(`/Edit/${paper.id}`)}
                 >
                   Edit
@@ -101,7 +101,7 @@ export default function HomeComponent({ paper, user, handleDelete }) {
               ''
             ) : (
               <Button
-                className='btn btn-danger'
+                className='delete-paper'
                 onClick={() => handleDelete(paper.id)}
               >
                 Delete
@@ -113,5 +113,3 @@ export default function HomeComponent({ paper, user, handleDelete }) {
     </div>
   );
 }
-
-// Home.propTypes = {}
