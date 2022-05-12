@@ -1,3 +1,8 @@
+body {
+  background-image: url(../assets/paper-background.png) !important;
+  margin: 0;
+  padding: 0;
+}
 //Cart View
 .cart-container {
   display: flex;
@@ -63,15 +68,15 @@
 //Home View
 .home-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
   flex-wrap: wrap;
   flex: row;
   border-radius: 10px;
   align-items: center;
   display: inline-block;
-
+ 
   .paper-card {
-    height: 400px;
+    height: 450px;
     width: 20rem;
     border: 2px solid gray;
     border-radius: 5px;
@@ -79,9 +84,27 @@
     padding: 10px;
     margin: 40px 20px;
     display: flex;
-    position: relative;
-    flex: row;
-    box-shadow: 4px 4px 8px hsla(0, 0%, 0%, 0.471);
+    flex-direction: column;
+    align-items: space-between;
+    box-shadow: 4px 4px 8px rgb(26, 98, 110);
+    .paper-qty-input{
+      vertical-align: middle;
+    }
+    .paper-btn-container {
+      width: 100%;
+      min-width: auto;
+    }
+    .paper-color {
+     text-align: center;
+     font-weight: bolder;
+     
+    }
+    .paper-name{
+font-weight: bold;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+color:rgb(26, 98, 110);
+    }
+    
 
     .add-to-cart {
       font-weight: 700;
@@ -95,46 +118,103 @@
       text-transform: uppercase;
       margin: 15px auto;
     }
+    .edit-paper {
+      background-color: beige;
+      color: black;
+      border-radius: 10px;
+      box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
+      height: inherit;
+      
+     
+    
+    
+    }
+    .delete-paper{
+      background-color: rgb(245, 229, 220);
+      color: red;
+      border-radius: 10px;
+      margin-left: 8rem;
+      border-color: red;
+      box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
+   
+     
+    
+    
+    }
+    
     .paper-image {
       width: 100%;
       max-width: 300px;
-      min-height: 200px;
+      min-height: 150px;
       display: block;
       object-fit: cover;
+    
     }
     btn btn-success {
       margin-left: auto;
     }
     btn btn-danger {
       margin: 8rem;
-    }
-  }
-
-  //Paper Details
-  .paper-details-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-
-    .paper-details-card {
-      border: 2px, solid, gray;
-      width: 80%;
-
-      .paper-details-name {
-        font-size: 2.5em;
-        font-weight: 500;
-        text-decoration: underline;
-      }
-      .paper-details-color,
-      .paper-details-specs,
-      .paper-details-weight {
-        font-size: 1.5em;
-      }
+      
     }
   }
 }
 
+.paper-details-container{
+  flex-direction: column;
+  align-items: center;
+  margin: 1em 5em 0 5em;
+  padding: 5em 0 5em 0;
+  display: flex;
+  justify-content: center;
+   .paper-details-card {
+        border: 2px, solid, gray;
+        width: 80%;
+        align-items: center;
+        background-color: rgb(75, 93, 98);
+}
+.paper-details-name {
+        font-size: 2.5em;
+        font-weight: 500;
+        text-decoration: underline;
+        text-align: center;
+        color: white;
+      }
+      .paper-details-color,
+          .paper-details-specs,
+          .paper-details-weight {
+            font-size: 1.5em;
+            text-align:  center;
+            color: white;
+          }
+          .paper-image{
+            width: 100%;
+            max-width: 300px;
+            min-height: 200px;
+            object-fit: cover;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            background-color: rgb(75, 93, 98);
+            
+          }
+          .edit-paper-detail{
+            background-color: white;
+      color: black;
+      border-radius: 10px;
+      margin-left: 8rem;
+      border-color: gray;
+      box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
+          }
+          .delete-paper-detail {
+            background-color: rgb(146, 42, 42);
+            color: white;
+            border-radius: 10px;
+        
+            border-color: gray;
+            box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
+          }
+}
 .searchInputs {
   float: right;
   margin: 0.2rem;
@@ -146,6 +226,7 @@
     margin-left: 0.5rem;
   }
 }
+
 //Navbar
 .nav-span {
   color: white;
