@@ -27,10 +27,10 @@ export default function CartItem({ item, quantityChange }) {
       <table className='cart-table'>
         <thead>
           <tr className='cart-table-row'>
-            <td className='cart-table-cell-h-img'></td>
-            <td className='cart-table-cell'>Name</td>
-            <td className='cart-table-cell'>Quantity</td>
-            <td className='cart-table-cell'>Price</td>
+            <th className='cart-table-cell-h-img th'></th>
+            <th className='cart-table-cell th'>Name</th>
+            <th className='cart-table-cell th'>Quantity</th>
+            <th className='cart-table-cell th'>Price</th>
           </tr>
         </thead>
         <tbody>

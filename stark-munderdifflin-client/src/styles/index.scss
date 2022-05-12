@@ -1,7 +1,7 @@
 body {
   background-image: url(../assets/paper-background.png) !important;
-  margin: 0;
-  padding: 0;
+  background-position: center;
+  background-size: cover;
 }
 //Cart View
 .cart-container {
@@ -29,7 +29,10 @@ body {
 .cart-table-row {
   align-items: center;
   min-width: 200em;
-
+  background-color: rgb(224, 223, 223);
+  .th {
+    background-color: rgb(179, 179, 179);
+  }
   .cart-table-cell-h-img {
     border-left: 1px solid black;
     border-top: 1px solid black;
@@ -310,11 +313,17 @@ body {
 }
 
 .user-order-table {
-  width: 80em;
+  width: 50em;
+  text-align: center;
 }
 
-.user-order-cell {
-  width: auto;
+.user-order-cell.order-head {
+  background-color: rgb(179, 179, 179);
+}
+
+.user-order-cell.order-body {
+  background-color: rgb(224, 223, 223);
+  width: 50%;
 }
 
 .view-order-btn {

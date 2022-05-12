@@ -24,7 +24,9 @@ export default function User({ user }) {
         <table className='user-order-table'>
           <thead className='user-order-header'>
             <tr className='user-order-row order-head'>
-              <td className='user-order-cell order-head'>Orders</td>
+              <th className='user-order-cell order-head' colSpan='2'>
+                Orders
+              </th>
             </tr>
           </thead>
           <tbody className='user-order-body'>
