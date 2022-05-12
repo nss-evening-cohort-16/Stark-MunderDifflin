@@ -53,19 +53,24 @@ namespace Stark_MunderDifflin.Controllers
             }
         }
 
-        // GET api/<OrderController>/5
-        //[HttpGet("{orderId}")]
-        //public IActionResult Get(int orderId)
-        //{
-        //    List<PaperOrderItem>? items = _orderItemRepo.GetAllItemsByOrderId(orderId);
-        //    if (items == null) return NotFound();
-        //    return Ok(items);
-
-        //}
-
-        [HttpGet("Customer/{uid}")]
-        public IActionResult GetOrderByUID(string uid)
+        //GET api/<OrderController>/5
+        [Authorize]
+        [HttpGet("{orderId}")]
+        public IActionResult GetOrderItems(int orderId)
         {
+            var uid = User.FindFirst(Claim => Claim.Type == "user_id").Value.ToString();
+            List<PaperOrderItem>? items = _orderItemRepo.GetAllItemsByOrderId(orderId);
+            if (items == null) return NotFound();
+            string orderUID = _orderRepo.GetOrderUIDByID(orderId);
+            if(uid == orderUID) return Ok(items);
+            else return Unauthorized();
+
+        }
+        [Authorize]
+        [HttpGet("Customer")]
+        public IActionResult GetOrderByUID()
+        {
+            var uid = User.FindFirst(Claim => Claim.Type == "user_id").Value.ToString();
             List<Order>? customerOrders = _orderRepo.GetAllOrdersByUID(uid);
             if (customerOrders == null) return NotFound();
             return Ok(customerOrders);

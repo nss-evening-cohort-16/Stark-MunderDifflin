@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Routes from './routes/index';
 import AppNavbar from './components/AppNavbar';
 import auth from './data/auth/firebaseConfig';
-import userExistsInDB from './data/userData';
+import { userExistsInDB } from './data/userData';
 import { useNavigate } from 'react-router-dom';
 
 function App() {

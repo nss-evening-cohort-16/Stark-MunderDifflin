@@ -15,4 +15,35 @@ const userExistsInDB = async () => {
   });
 };
 
-export default userExistsInDB;
+/**
+ * Retrieves all user orders.
+ * @async GET
+ * @return {Array} Array-Order Objects
+ */
+const getAllUserOrders = async () => {
+  const token = sessionStorage.getItem('idToken');
+  try {
+    const res = await axios.get(`${dbURL}/Order/Customer`, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+    return res.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+const getUserOrderItems = async (id) => {
+  const token = sessionStorage.getItem('idToken');
+  try {
+    const res = await axios.get(`${dbURL}/Order/${id}`, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+    return res.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export { userExistsInDB, getAllUserOrders, getUserOrderItems };

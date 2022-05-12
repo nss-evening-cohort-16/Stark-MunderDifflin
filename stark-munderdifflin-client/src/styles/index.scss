@@ -1,7 +1,7 @@
 body {
   background-image: url(../assets/paper-background.png) !important;
-  margin: 0;
-  padding: 0;
+  background-position: center;
+  background-size: cover;
 }
 //Cart View
 .cart-container {
@@ -29,7 +29,10 @@ body {
 .cart-table-row {
   align-items: center;
   min-width: 200em;
-
+  background-color: rgb(224, 223, 223);
+  .th {
+    background-color: rgb(179, 179, 179);
+  }
   .cart-table-cell-h-img {
     border-left: 1px solid black;
     border-top: 1px solid black;
@@ -68,13 +71,13 @@ body {
 //Home View
 .home-container {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   flex-wrap: wrap;
   flex: row;
   border-radius: 10px;
   align-items: center;
   display: inline-block;
- 
+
   .paper-card {
     height: 450px;
     width: 20rem;
@@ -87,7 +90,7 @@ body {
     flex-direction: column;
     align-items: space-between;
     box-shadow: 4px 4px 8px rgb(26, 98, 110);
-    .paper-qty-input{
+    .paper-qty-input {
       vertical-align: middle;
     }
     .paper-btn-container {
@@ -95,16 +98,15 @@ body {
       min-width: auto;
     }
     .paper-color {
-     text-align: center;
-     font-weight: bolder;
-     
+      text-align: center;
+      font-weight: bolder;
     }
-    .paper-name{
-font-weight: bold;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-color:rgb(26, 98, 110);
+    .paper-name {
+      font-weight: bold;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+        sans-serif;
+      color: rgb(26, 98, 110);
     }
-    
 
     .add-to-cart {
       font-weight: 700;
@@ -116,7 +118,6 @@ color:rgb(26, 98, 110);
       display: block;
       cursor: pointer;
       text-transform: uppercase;
-      margin: 15px auto;
     }
     .edit-paper {
       background-color: beige;
@@ -124,96 +125,85 @@ color:rgb(26, 98, 110);
       border-radius: 10px;
       box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
       height: inherit;
-      
-     
-    
-    
     }
-    .delete-paper{
+    .delete-paper {
       background-color: rgb(245, 229, 220);
       color: red;
       border-radius: 10px;
       margin-left: 8rem;
       border-color: red;
       box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
-   
-     
-    
-    
     }
-    
+
     .paper-image {
-      width: 100%;
+      width: 70%;
       max-width: 300px;
       min-height: 150px;
       display: block;
       object-fit: cover;
-    
     }
     btn btn-success {
       margin-left: auto;
     }
     btn btn-danger {
       margin: 8rem;
-      
     }
   }
 }
 
-.paper-details-container{
+.paper-details-container {
   flex-direction: column;
   align-items: center;
   margin: 1em 5em 0 5em;
   padding: 5em 0 5em 0;
   display: flex;
   justify-content: center;
-   .paper-details-card {
-        border: 2px, solid, gray;
-        width: 80%;
-        align-items: center;
-        background-color: rgb(75, 93, 98);
-}
-.paper-details-name {
-        font-size: 2.5em;
-        font-weight: 500;
-        text-decoration: underline;
-        text-align: center;
-        color: white;
-      }
-      .paper-details-color,
-          .paper-details-specs,
-          .paper-details-weight {
-            font-size: 1.5em;
-            text-align:  center;
-            color: white;
-          }
-          .paper-image{
-            width: 100%;
-            max-width: 300px;
-            min-height: 200px;
-            object-fit: cover;
-            justify-content: center;
-            display: flex;
-            align-items: center;
-            background-color: rgb(75, 93, 98);
-            
-          }
-          .edit-paper-detail{
-            background-color: white;
-      color: black;
-      border-radius: 10px;
-      margin-left: 8rem;
-      border-color: gray;
-      box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
-          }
-          .delete-paper-detail {
-            background-color: rgb(146, 42, 42);
-            color: white;
-            border-radius: 10px;
-        
-            border-color: gray;
-            box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
-          }
+  .paper-details-card {
+    border: 2px, solid, gray;
+    width: 80%;
+    align-items: center;
+    background-color: rgb(75, 93, 98);
+  }
+  .paper-details-name {
+    font-size: 2.5em;
+    font-weight: 500;
+    text-decoration: underline;
+    text-align: center;
+    color: white;
+  }
+  .paper-details-color,
+  .paper-details-specs,
+  .paper-details-weight {
+    font-size: 1.5em;
+    text-align: center;
+    color: white;
+  }
+  .paper-image {
+    width: 100%;
+    max-width: 300px;
+    min-height: 200px;
+    object-fit: cover;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: rgb(75, 93, 98);
+  }
+  .edit-paper-detail {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    margin-left: 8rem;
+    border-color: gray;
+    box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
+  }
+  .delete-paper-detail {
+    background-color: rgb(146, 42, 42);
+    color: white;
+    border-radius: 10px;
+
+    border-color: gray;
+    box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
+  }
 }
 .searchInputs {
   float: right;
@@ -307,4 +297,41 @@ color:rgb(26, 98, 110);
 
 .user-drop {
   margin: 0 1em 0 auto;
+}
+
+//User Profile
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-order-table,
+.user-order-header,
+.user-order-cell.order-body {
+  border: 2px solid black;
+}
+
+.user-order-table {
+  width: 50em;
+  text-align: center;
+}
+
+.user-order-cell.order-head {
+  background-color: rgb(179, 179, 179);
+}
+
+.user-order-cell.order-body {
+  background-color: rgb(224, 223, 223);
+  width: 50%;
+}
+
+.view-order-btn {
+  margin-left: 1em;
+}
+
+.user-order-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

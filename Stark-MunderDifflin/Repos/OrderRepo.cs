@@ -51,6 +51,33 @@ namespace Stark_MunderDifflin.Repos
 
             }
         }
+        public string? GetOrderUIDByID(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT CustomerId
+                        FROM [Order]
+                        WHERE Id = @oID";
+
+                    cmd.Parameters.AddWithValue("@oID", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader.GetString(reader.GetOrdinal("CustomerId"));
+                        }
+                       else return null;
+                    }
+                }
+
+            }
+        }
+
         public void DeleteOrder(int orderId)
         {
             using (SqlConnection conn = Connection)

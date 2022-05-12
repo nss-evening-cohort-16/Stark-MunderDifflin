@@ -36,7 +36,7 @@ export default function AppNavbar({ user }) {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='/cart'>
+              <NavLink href='/Cart'>
                 <span className='nav-span'>Cart</span>
               </NavLink>
             </NavItem>
@@ -60,6 +60,7 @@ export default function AppNavbar({ user }) {
                   <DropdownMenu>
                     <DropdownItem>
                       <NavLink onClick={signOutUser}>Sign Out</NavLink>
+                      <NavLink href='/User'>My Account</NavLink>
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>

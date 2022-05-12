@@ -11,5 +11,6 @@ namespace Stark_MunderDifflin.Repos
         public int AddNewOrder(string customerId);
         public void CloseOrder(int orderId);
         public Order? GetOpenOrderByUID(string uid);
+        public string? GetOrderUIDByID(int id);
     }
 }
