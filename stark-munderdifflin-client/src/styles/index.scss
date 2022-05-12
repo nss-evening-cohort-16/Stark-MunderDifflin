@@ -329,3 +329,9 @@ body {
 .view-order-btn {
   margin-left: 1em;
 }
+
+.user-order-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

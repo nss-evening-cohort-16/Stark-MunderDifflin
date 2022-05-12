@@ -12,7 +12,7 @@ export default function UserOrder() {
   }, []);
 
   return (
-    <div>
+    <div className='user-order-container'>
       {orderItems
         ? orderItems.map((orderItem) => (
             <UserOrderItem key={orderItem.id} item={orderItem} />
