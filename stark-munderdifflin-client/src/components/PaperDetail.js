@@ -50,7 +50,7 @@ export default function PaperDetails({user}) {
             ) : (
               <>
                 <Button
-                  className='edit-paper'
+                  className='edit-paper-detail'
                   onClick={() => navigate(`/Edit/${paperDetail.id}`)}
                 >
                   Edit
@@ -61,7 +61,7 @@ export default function PaperDetails({user}) {
               ''
             ) : (
                 <Button
-                  className='btn btn-danger'
+                  className='delete-paper-detail'
                   onClick={() => handleDelete(paperDetail.id)}
                 >
                 Delete
