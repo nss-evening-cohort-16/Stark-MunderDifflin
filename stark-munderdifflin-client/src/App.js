@@ -36,7 +36,9 @@ function App() {
   return (
     <div className='App'>
       <AppNavbar user={user} />
-      <Routes user={user} />
+      <div className='main-container'>
+        <Routes user={user} />
+      </div>
     </div>
   );
 }

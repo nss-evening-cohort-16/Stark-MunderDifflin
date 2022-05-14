@@ -27,20 +27,19 @@ export default function Home({ user }) {
 
   return (
     <>
-      <div className='add-paper-btn'>
+      <div className='add-paper-btn-container page-section'>
         {user?.isAdmin ? (
-          <Button
-            className='btn btn-success'
-            onClick={() => navigate(`/PaperForm`)}
-          >
-            Add New Paper
-          </Button>
+          <div className='add-paper-btn'>
+            <Button
+              className='btn btn-success'
+              onClick={() => navigate(`/PaperForm`)}
+            >
+              Add New Paper
+            </Button>
+          </div>
         ) : (
           ''
         )}
-      </div>
-
-      <div className='paper-view'>
         <div className='search-filter'>
           <SearchPaper
             placeholder='Search by Name Or Color'
@@ -48,6 +47,9 @@ export default function Home({ user }) {
             data={papers}
           />
         </div>
+      </div>
+
+      <div className='paper-view page-section'>
         <>
           {filteredData.length
             ? filteredData.map((paper) => (

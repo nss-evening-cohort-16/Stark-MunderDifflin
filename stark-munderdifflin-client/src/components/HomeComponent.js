@@ -23,13 +23,17 @@ export default function HomeComponent({ paper, user, handleDelete }) {
     setPaperQty(Number(e.target.value));
   };
 
-  const handleAdd = () => {
+  const handleAdd = (e) => {
     const item = {
       paperId: paper.id,
       quantity: paperQty,
       orderId: 0,
     };
     addToCart(item);
+    e.target.innerText = 'Added!';
+    setTimeout(() => {
+      e.target.innerText = 'Add to Cart';
+    }, 1500);
   };
 
   const handleShowModal = () => setShowModal(true);
@@ -80,7 +84,7 @@ export default function HomeComponent({ paper, user, handleDelete }) {
                 id='paper-qty-input'
                 className='add-to-cart'
                 type='button'
-                onClick={() => handleAdd()}
+                onClick={(e) => handleAdd(e)}
               >
                 Add to Cart
               </Button>

@@ -51,7 +51,7 @@ export default function Cart() {
         <h4>Cart is Empty</h4>
       ) : (
         <>
-          <div className='cart-items-container'>
+          <div className='cart-items-container page-section'>
             {cartItems.map((item) => (
               <CartItem
                 key={item.id}
