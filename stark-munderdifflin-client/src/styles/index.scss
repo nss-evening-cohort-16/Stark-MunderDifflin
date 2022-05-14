@@ -1,8 +1,22 @@
 body {
-  background-image: url(../assets/paper-background.png) !important;
+  background-color: lightgray !important;
+}
+
+.main-container {
+  margin: -1em 8em 0 8em;
+  padding: 2em 1em 0 1em;
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
+
+.page-section {
+  background-color: white;
+  margin: 1em 0 1em 0;
+  padding: 1em;
+  box-shadow: 0px 0px 3px white;
+}
+
 //Cart View
 .cart-container {
   display: flex;
@@ -14,7 +28,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.25em;
   }
 
   .cart-btn {
@@ -36,6 +49,7 @@ body {
   .cart-table-cell-h-img {
     border-left: 1px solid black;
     border-top: 1px solid black;
+    border-bottom: 1px solid black;
   }
   .cart-table-cell-r-img {
     border-left: 1px solid black;
@@ -44,6 +58,7 @@ body {
 
   .cart-table-cell {
     border: 1px solid black;
+    border-left: transparent;
     min-width: 20em;
     text-align: center;
 
@@ -69,6 +84,15 @@ body {
 }
 
 //Home View
+.add-paper-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-paper-btn-container > * {
+}
+
 .home-container {
   display: flex;
   justify-content: space-between;
@@ -81,21 +105,27 @@ body {
   .paper-card {
     height: 450px;
     width: 20rem;
-    border: 2px solid gray;
+    border: 2px transparent;
     border-radius: 5px;
     overflow: hidden;
     padding: 10px;
     margin: 40px 20px;
     display: flex;
     flex-direction: column;
-    align-items: space-between;
-    box-shadow: 4px 4px 8px rgb(26, 98, 110);
+    align-items: center;
+    box-shadow: 0px 0px 8px black;
     .paper-qty-input {
       vertical-align: middle;
     }
     .paper-btn-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 100%;
       min-width: auto;
+      .btn {
+        margin: 0.25em;
+      }
     }
     .paper-color {
       text-align: center;
@@ -105,7 +135,7 @@ body {
       font-weight: bold;
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
         sans-serif;
-      color: rgb(26, 98, 110);
+      color: rgb(189, 138, 43);
     }
 
     .add-to-cart {
@@ -113,11 +143,9 @@ body {
       font-size: 18px;
       border-radius: 5px;
       background-color: orange;
-      width: 60%;
       height: 40px;
       display: block;
       cursor: pointer;
-      text-transform: uppercase;
     }
     .edit-paper {
       background-color: beige;
@@ -151,6 +179,15 @@ body {
   }
 }
 
+.addUpdate-button {
+  background-color: rgb(26, 98, 110);
+  margin-left: 45%;
+  margin-top: 0.25em;
+  border-radius: 6px 6px 6px 6px;
+  color: white;
+  width: 6rem;
+  height: 3rem;
+}
 .paper-details-container {
   flex-direction: column;
   align-items: center;
@@ -206,11 +243,9 @@ body {
   }
 }
 .searchInputs {
-  float: right;
   margin: 0.2rem;
 
   .search-button {
-    background-color: rgb(26, 98, 110);
     color: white;
     border-radius: 6px 6px 6px;
     margin-left: 0.5rem;
@@ -220,7 +255,7 @@ body {
 //Navbar
 .nav-span {
   color: white;
-  font-size: 1.2em;
+  font-size: 1.5em;
   padding: 0 0.5em 0 0.5em;
   line-height: 1.75em;
   text-shadow: 1px 1px 1px black;
@@ -241,7 +276,7 @@ body {
 }
 
 .dropdown-menu.show {
-  background-color: rgb(26, 98, 110);
+  background-color: rgb(240, 198, 120);
   color: white;
   margin-top: 0.3em;
   border-radius: 0 0 6px 6px;
@@ -262,8 +297,9 @@ body {
 }
 
 .navbar {
-  background-color: rgb(26, 98, 110);
+  background-color: rgb(202, 157, 74);
   height: 3.5em;
+  box-shadow: 0 0 3px rgb(202, 157, 74);
 }
 
 .nav-logo {
@@ -274,7 +310,6 @@ body {
 
 .navbar-container {
   width: 100%;
-  margin-bottom: 1em;
 }
 
 .login-btn-container {
@@ -296,7 +331,7 @@ body {
 }
 
 .user-drop {
-  margin: 0 1em 0 auto;
+  margin: 0.4em 1em 0 auto;
 }
 
 //User Profile
