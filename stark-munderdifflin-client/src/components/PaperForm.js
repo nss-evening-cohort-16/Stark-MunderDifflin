@@ -74,10 +74,11 @@ export default function PaperForm() {
     };
 
   return (
-    <>
-    <h3>Paper Form</h3>
+ 
+   
+    <div className='paper-form'>
     <form onSubmit={handleSubmit}>
-      <div>
+      <div className="form-group">
         <input 
           type="text"
           className="form-control"
@@ -88,7 +89,7 @@ export default function PaperForm() {
           required
         />
       </div>
-      <div>
+      <div className='form-group'>
         <input 
           type="text"
           className="form-control"
@@ -99,7 +100,7 @@ export default function PaperForm() {
           required
         />
       </div>
-      <div>
+      <div className='form-group'>
         <input 
           type="number"
           className="form-control"
@@ -110,7 +111,7 @@ export default function PaperForm() {
           required
         />
       </div>
-      <div>
+      <div className='form-group'>
         <input 
           type="number"
           className="form-control"
@@ -121,7 +122,7 @@ export default function PaperForm() {
           required
         />
       </div>
-      <div>
+      <div className='form-group'>
         <input 
           type="number"
           className="form-control"
@@ -132,7 +133,7 @@ export default function PaperForm() {
           required
         />
       </div>
-      <div>
+      <div className='form-group'>
         <input 
           type="number"
           className="form-control"
@@ -143,7 +144,7 @@ export default function PaperForm() {
           required
         />
       </div>
-      <div>
+      <div className='form-group'>
         <input 
           type="url"
           className="form-control"
@@ -154,12 +155,12 @@ export default function PaperForm() {
           required
         />
       </div>
-    <button type="submit">
+    <button type="submit" className='addUpdate-button' >
 
       {dbKey ? 'Update' : 'Submit'}
 
     </button>
     </form>
-    </>
+    </div>
   )
 }

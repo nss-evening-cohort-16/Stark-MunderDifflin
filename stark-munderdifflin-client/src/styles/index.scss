@@ -204,13 +204,16 @@ color:rgb(26, 98, 110);
       border-radius: 10px;
       margin-left: 8rem;
       border-color: gray;
+      position:absolute;
       box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
           }
           .delete-paper-detail {
             background-color: rgb(146, 42, 42);
             color: white;
             border-radius: 10px;
-        
+        margin-left: .1rem;
+        position: relative;
+        border: left;
             border-color: gray;
             box-shadow: 4px 4px 8px hsla(0, 10%, 25%, 0.471);
           }
@@ -307,4 +310,37 @@ color:rgb(26, 98, 110);
 
 .user-drop {
   margin: 0 1em 0 auto;
+}
+.paper-form {
+  justify-content: center;
+  padding: 1rem;
+  margin-top:  .1em 0;
+  padding-left: 8rem;
+  padding-right: 8rem;
+
+  
+}
+
+
+
+.form-control {
+  width:80% ;
+  margin: .5em 0 .5em 0;
+  padding-left: 35rem;
+  
+
+}
+.edit-view {
+  text-align: center;
+font-weight: 700;
+  padding-top: 3rem;
+  padding-bottom: .1rem;
+}
+.addUpdate-button {
+  background-color: rgb(26, 98, 110) ;
+margin-left: 35rem;
+border-radius: 6px 6px 6px 6px;
+color: white;
+width: 6rem;
+height: 3rem;
 }

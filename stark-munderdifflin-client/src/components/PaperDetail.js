@@ -48,24 +48,26 @@ export default function PaperDetails({user}) {
         {!user?.isAdmin ? (
               ''
             ) : (
-              <>
+              <div className='edit-detail'>
                 <Button
                   className='edit-paper-detail'
                   onClick={() => navigate(`/Edit/${paperDetail.id}`)}
                 >
                   Edit
                 </Button>
-              </>
+              </div>
             )}
         {!user?.isAdmin ? ( 
               ''
             ) : (
+              <div className='delete-detail'>
                 <Button
                   className='delete-paper-detail'
                   onClick={() => handleDelete(paperDetail.id)}
                 >
                 Delete
               </Button>
+              </div>
             )}
             
       </Card>
